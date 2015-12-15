@@ -1,17 +1,14 @@
 
-## RcmdrPlugin.KMggplot2 package
+# RcmdrPlugin.KMggplot2 package
 
--------------------------------------------------------
 
-### Changes in version 0.2-2 (2015-12-15)
+## Changes in version 0.2-2 (2015-12-15)
 
 * New ggplot2's theme (theme_linedraw, theme_light).
 * Fixed a bug was caused by new ggplot2's theme.
 
 
--------------------------------------------------------
-
-### Changes in version 0.2-1 (2015-12-14)
+## Changes in version 0.2-1 (2015-12-14)
 
 * Kaplan-Meier plot: fixed a bug was caused by a tie data handling. (Thanks to Dr. M. Felix Freshwater).
 * Slovenian translation by Matjaž Jeran (Thanks to Matjaž Jeran and their friends).
@@ -21,9 +18,7 @@
 * GUI refinement (Thanks to Prof. Erich Neuwirth).
 
 
--------------------------------------------------------
-
-### Changes in version 0.2-0 (2013-01-23)
+## Changes in version 0.2-0 (2013-01-23)
 
 * Fixed a bug about "modes" in "variableboxes" class.
 * Added ggplot2-0.9.3's themes (classic, minimal).
@@ -35,18 +30,14 @@
 * Modified start-up for the problem that Commander window open twice when a plug-in is loaded via library() (see Rcmdr 1.9-3 NEWS).
 
 
--------------------------------------------------------
-
-### Changes in version 0.1-1 (2012-09-03)
+## Changes in version 0.1-1 (2012-09-03)
 
 * Renamed opt() to theme() and theme_xx() and element_xx() for the new theme system.
 * Deleted a theme element: theme_rect2().
 * Box plot: added a symbol of the median for violin plots.
 
 
--------------------------------------------------------
-
-### Changes in version 0.1-0 (2012-05-18)
+## Changes in version 0.1-0 (2012-05-18)
 
 * Restructuring implementation approach for efficient maintenance.
 * Added options() for storing package specific options (e.g., font size, font family, ...).
@@ -61,18 +52,14 @@
 * Deleted the dummy data for histograms, which is large in size.
 
 
--------------------------------------------------------
-
-### Changes in version 0.0-4 (2012-05-01)
+## Changes in version 0.0-4 (2012-05-01)
 
 * Fixed "scale_y_continuous(formatter = "percent")" to "scale_y_continuous(labels = percent)" for ggplot2 (>= 0.9.0).
 * Fixed "legend = FALSE" to "show_guide = FALSE" for ggplot2 (>= 0.9.0).
 * Fixed the DESCRIPTION file for ggplot2 (>= 0.9.0) dependency.
 
 
--------------------------------------------------------
-
-### Changes in version 0.0-3 (2011-07-28; FIRST RELEASE VERSION)
+## Changes in version 0.0-3 (2011-07-28; FIRST RELEASE VERSION)
 
 * Kaplan-Meier plot: Show no. at risk table on outside.
 * Histogram: Color coding.
@@ -114,15 +101,11 @@
 * Distribution plot: Negative binomial distribution.
 
 
--------------------------------------------------------
-
-### Changes in version 0.0-2 (2010-11-01; ALPHA TEST VERSION)
+## Changes in version 0.0-2 (2010-11-01; ALPHA TEST VERSION)
 
 * Kaplan-Meier plot: Show no. at risk on inside.
 
 
--------------------------------------------------------
-
-### Changes in version 0.0-1 (2010-XX-XX; UNRELEASED VERSION)
+## Changes in version 0.0-1 (2010-XX-XX; UNRELEASED VERSION)
 
 * Kaplan-Meier plot: Usual Kaplan-Meier plot.
