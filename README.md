@@ -1,7 +1,6 @@
 
 ## RcmdrPlugin.KMggplot2 package
 
-------------------------------------------------
 
 ### An Rcmdr Plug-in for Kaplan-Meier Plots and Other Plots by Using the ggplot2 Package
 
