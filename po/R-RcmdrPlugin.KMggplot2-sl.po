@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:24+0900\n"
-"PO-Revision-Date: 2015-12-10 15:24+0900\n"
+"POT-Creation-Date: 2015-12-15 12:42+0900\n"
+"PO-Revision-Date: 2015-12-15 12:42+0900\n"
 "Last-Translator: Triad sou. <triadsou@gmail.com>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -20,69 +20,69 @@ msgstr ""
 "X-Poedit-SearchPath-0: ./R\n"
 "X-Poedit-SearchPath-1: ./inst/etc\n"
 
-#: R/guiparts-toolbox.R:69
+#: R/guiparts-toolbox.R:70
 msgid "Font size"
 msgstr "Velikost črkopisa"
 
-#: R/guiparts-toolbox.R:79
+#: R/guiparts-toolbox.R:80
 msgid "Font family"
 msgstr "Družina črkopisa"
 
-#: R/guiparts-toolbox.R:91
+#: R/guiparts-toolbox.R:92
 msgid "Colour pattern"
 msgstr "Barvni vzorec"
 
-#: R/guiparts-toolbox.R:99
+#: R/guiparts-toolbox.R:100
 msgid "Save graph"
 msgstr "Shrani graf"
 
-#: R/guiparts-toolbox.R:100
+#: R/guiparts-toolbox.R:101
 msgid "Graph options"
 msgstr "Opcije grafikona"
 
-#: R/guiparts-toolbox.R:117
+#: R/guiparts-toolbox.R:134
 msgid "Theme"
 msgstr "Barvna shema"
 
-#: R/plot-aaa.R:99 R/plot-aaa.R:149 R/plot-factorise.R:101 R/plot-gkm.R:287
-#: R/plot-gkm.R:419 R/plot-gkm.R:436 R/plot-gqq.R:212 R/plot-gqq.R:223
-#: R/plot-gqq.R:234 R/plot-gqq.R:245 R/plot-gqq.R:256 R/plot-gqq.R:316
+#: R/plot-aaa.R:107 R/plot-aaa.R:157 R/plot-factorise.R:99 R/plot-gkm.R:294
+#: R/plot-gkm.R:440 R/plot-gkm.R:457 R/plot-gqq.R:218 R/plot-gqq.R:229
+#: R/plot-gqq.R:240 R/plot-gqq.R:251 R/plot-gqq.R:262 R/plot-gqq.R:322
 msgid "Error"
 msgstr "Napaka"
 
-#: R/plot-aaa.R:165 R/plot-aaa.R:166
+#: R/plot-aaa.R:173 R/plot-aaa.R:174
 msgid "Preview"
 msgstr "Predogled"
 
-#: R/plot-aaa.R:536
+#: R/plot-aaa.R:555
 msgid ""
 "Plot failed.  Please check the data and variables, or try other options."
 msgstr ""
 "Ne morem narisati. Prosim preverite podatke in spremenljivke ali poskusite z "
 "drugačnimi nastavitvami"
 
-#: R/plot-factorise.R:143
+#: R/plot-factorise.R:141
 msgid "Variable (pick one or more)"
 msgstr "Spremenljivka (izberite eno)"
 
-#: R/plot-factorise.R:153
+#: R/plot-factorise.R:151
 msgid "Simple factorization"
 msgstr "Enostavna faktorizacija"
 
-#: R/plot-factorise.R:154
+#: R/plot-factorise.R:152
 msgid "Categorize according to the quartiles"
 msgstr "Kategoriziraj glede na kvartile"
 
-#: R/plot-factorise.R:156 R/plot-gbox.R:122 R/plot-gcont.R:111
-#: R/plot-ghist.R:131 R/plot-gkm.R:135
+#: R/plot-factorise.R:154 R/plot-gbox.R:122 R/plot-gcont.R:112
+#: R/plot-ghist.R:133 R/plot-gkm.R:138
 msgid "Options"
 msgstr "Opcije"
 
-#: R/plot-factorise.R:170
+#: R/plot-factorise.R:168
 msgid "Factorizing numeric variables"
 msgstr "Faktoriziranje številskih spremenljivk"
 
-#: R/plot-factorise.R:218
+#: R/plot-factorise.R:216
 msgid "Variables are not selected"
 msgstr "Spremenljivke niso izbrane"
 
@@ -90,35 +90,35 @@ msgstr "Spremenljivke niso izbrane"
 msgid "X variable"
 msgstr "Spremenljivka x"
 
-#: R/plot-gbox.R:76 R/plot-gcont.R:75 R/plot-gline.R:78 R/plot-gqq.R:74
+#: R/plot-gbox.R:76 R/plot-gcont.R:76 R/plot-gline.R:80 R/plot-gqq.R:74
 #: R/plot-gscat.R:75
 msgid "Y variable (pick one)"
 msgstr "Spremenljivka Y (izberite eno)"
 
-#: R/plot-gbox.R:86 R/plot-gcont.R:86 R/plot-gdiscbar.R:85 R/plot-ghist.R:86
-#: R/plot-gkm.R:88 R/plot-gline.R:89 R/plot-gpie.R:83 R/plot-gscat.R:86
+#: R/plot-gbox.R:86 R/plot-gcont.R:87 R/plot-gdiscbar.R:86 R/plot-ghist.R:88
+#: R/plot-gkm.R:91 R/plot-gline.R:91 R/plot-gpie.R:84 R/plot-gscat.R:86
 msgid "Facet variable in rows"
 msgstr "Fasetna spremenljivka v vrsticah"
 
-#: R/plot-gbox.R:87 R/plot-gcont.R:87 R/plot-gdiscbar.R:86 R/plot-ghist.R:87
-#: R/plot-gkm.R:89 R/plot-gline.R:90 R/plot-gpie.R:84 R/plot-gscat.R:87
+#: R/plot-gbox.R:87 R/plot-gcont.R:88 R/plot-gdiscbar.R:87 R/plot-ghist.R:89
+#: R/plot-gkm.R:92 R/plot-gline.R:92 R/plot-gpie.R:85 R/plot-gscat.R:87
 msgid "Facet variable in cols"
 msgstr "Fasetna spremenljivka v stolpcih"
 
-#: R/plot-gbox.R:96 R/plot-gcont.R:96 R/plot-gdiscbar.R:95 R/plot-gdist.R:85
-#: R/plot-ghist.R:96 R/plot-gkm.R:98 R/plot-gline.R:99 R/plot-gqq.R:84
+#: R/plot-gbox.R:96 R/plot-gcont.R:97 R/plot-gdiscbar.R:96 R/plot-gdist.R:85
+#: R/plot-ghist.R:98 R/plot-gkm.R:101 R/plot-gline.R:101 R/plot-gqq.R:84
 #: R/plot-gscat.R:96
 msgid "Horizontal axis label"
 msgstr "Oznaka vodoravne osi"
 
-#: R/plot-gbox.R:97 R/plot-gcont.R:97 R/plot-gdiscbar.R:96 R/plot-gdist.R:86
-#: R/plot-ghist.R:97 R/plot-gkm.R:99 R/plot-gline.R:100 R/plot-gqq.R:85
+#: R/plot-gbox.R:97 R/plot-gcont.R:98 R/plot-gdiscbar.R:97 R/plot-gdist.R:86
+#: R/plot-ghist.R:99 R/plot-gkm.R:102 R/plot-gline.R:102 R/plot-gqq.R:85
 #: R/plot-gscat.R:97
 msgid "Vertical axis label"
 msgstr "Oznaka navpične osi"
 
-#: R/plot-gbox.R:98 R/plot-gcont.R:99 R/plot-gdiscbar.R:98 R/plot-gdist.R:87
-#: R/plot-ghist.R:98 R/plot-gkm.R:101 R/plot-gline.R:102 R/plot-gpie.R:94
+#: R/plot-gbox.R:98 R/plot-gcont.R:100 R/plot-gdiscbar.R:99 R/plot-gdist.R:87
+#: R/plot-ghist.R:100 R/plot-gkm.R:104 R/plot-gline.R:104 R/plot-gpie.R:95
 #: R/plot-gqq.R:86 R/plot-gscat.R:99 R/plot-gscatmat.R:86
 msgid "Title"
 msgstr "Naslov"
@@ -139,7 +139,7 @@ msgstr "95% interval zaupanja (t distribucija)"
 msgid "95% C.I. (bootstrap)"
 msgstr "95% interval zaupanja (bootstrap)"
 
-#: R/plot-gbox.R:111 R/plot-gline.R:114
+#: R/plot-gbox.R:111 R/plot-gline.R:116
 msgid "Plot type"
 msgstr "Zvrst grafa"
 
@@ -155,83 +155,83 @@ msgstr "Dodaj podatkovno točko"
 msgid "Box plot / Violin plot / Confidence interval"
 msgstr "Okvir z ročaji / Violinski graf / Interval zaupanja"
 
-#: R/plot-gbox.R:212 R/plot-gcont.R:199 R/plot-gline.R:237 R/plot-gqq.R:200
+#: R/plot-gbox.R:212 R/plot-gcont.R:200 R/plot-gline.R:239 R/plot-gqq.R:200
 #: R/plot-gscat.R:201
 msgid "Y variable is not selected"
 msgstr "Spremenljivka Y ni izbrana"
 
-#: R/plot-gcont.R:74 R/plot-gdiscbar.R:74 R/plot-gline.R:77 R/plot-gscat.R:74
+#: R/plot-gcont.R:75 R/plot-gdiscbar.R:75 R/plot-gline.R:79 R/plot-gscat.R:74
 msgid "X variable (pick one)"
 msgstr "Spremenljivka X (izberite eno)"
 
-#: R/plot-gcont.R:76
+#: R/plot-gcont.R:77
 msgid "Z variable (pick one)"
 msgstr "Spremenljivka Z (izberite eno)"
 
-#: R/plot-gcont.R:98 R/plot-gdiscbar.R:97 R/plot-gkm.R:100 R/plot-gline.R:101
-#: R/plot-gpie.R:93 R/plot-gscat.R:98 R/plot-gscatmat.R:85
+#: R/plot-gcont.R:99 R/plot-gdiscbar.R:98 R/plot-gkm.R:103 R/plot-gline.R:103
+#: R/plot-gpie.R:94 R/plot-gscat.R:98 R/plot-gscatmat.R:85
 msgid "Legend label"
 msgstr "Oznaka legende"
 
-#: R/plot-gcont.R:107 R/plot-gkm.R:109 R/plot-gline.R:121 R/plot-gline.R:132
+#: R/plot-gcont.R:108 R/plot-gkm.R:112 R/plot-gline.R:123 R/plot-gline.R:134
 #: R/plot-gscat.R:107 R/plot-gscatmat.R:94
 msgid "None"
 msgstr "Nobena"
 
-#: R/plot-gcont.R:108
+#: R/plot-gcont.R:109
 msgid "Coloured lines"
 msgstr "Barvne črte"
 
-#: R/plot-gcont.R:109 R/plot-ghist.R:129
+#: R/plot-gcont.R:110 R/plot-ghist.R:131
 msgid "Heat map"
 msgstr "Toplotni grafikon"
 
-#: R/plot-gcont.R:131
+#: R/plot-gcont.R:132
 msgid "Contour plot"
 msgstr "Grafikon plasti"
 
-#: R/plot-gcont.R:193 R/plot-gline.R:231 R/plot-gscat.R:195
+#: R/plot-gcont.R:194 R/plot-gline.R:233 R/plot-gscat.R:195
 msgid "X variable is not selected"
 msgstr "Spremenljivka X ni izbrana"
 
-#: R/plot-gcont.R:205
+#: R/plot-gcont.R:206
 msgid "Z variable is not selected"
 msgstr "Spremenljivka Z ni izbrana"
 
-#: R/plot-gcont.R:211
+#: R/plot-gcont.R:212
 msgid "Each variable must be different."
 msgstr "Vsaka od spremenljivk mora biti različna"
 
-#: R/plot-gdiscbar.R:75 R/plot-gkm.R:78 R/plot-gline.R:79 R/plot-gscat.R:76
+#: R/plot-gdiscbar.R:76 R/plot-gkm.R:81 R/plot-gline.R:81 R/plot-gscat.R:76
 #: R/plot-gscatmat.R:74
 msgid "Stratum variable"
 msgstr "Spremenljivka ravni"
 
-#: R/plot-gdiscbar.R:106 R/plot-ghist.R:118
+#: R/plot-gdiscbar.R:107 R/plot-ghist.R:120
 msgid "Percentages"
 msgstr "Odstotki"
 
-#: R/plot-gdiscbar.R:107 R/plot-ghist.R:117
+#: R/plot-gdiscbar.R:108 R/plot-ghist.R:119
 msgid "Frequency counts"
 msgstr "Frekvence"
 
-#: R/plot-gdiscbar.R:109 R/plot-ghist.R:120
+#: R/plot-gdiscbar.R:110 R/plot-ghist.R:122
 msgid "Axis scaling"
 msgstr "Merilo osi"
 
-#: R/plot-gdiscbar.R:129
+#: R/plot-gdiscbar.R:130
 msgid "Bar chart for discrete variables"
 msgstr "Stolpični diagram za diskretne spremenljivke"
 
-#: R/plot-gdiscbar.R:176 R/plot-ghist.R:219
+#: R/plot-gdiscbar.R:177 R/plot-ghist.R:221
 msgid "Percent"
 msgstr "Odstotek"
 
-#: R/plot-gdiscbar.R:178 R/plot-ghist.R:216
+#: R/plot-gdiscbar.R:179 R/plot-ghist.R:218
 msgid "Count"
 msgstr "Števec"
 
-#: R/plot-gdiscbar.R:195 R/plot-ghist.R:237 R/plot-gpie.R:171
+#: R/plot-gdiscbar.R:196 R/plot-ghist.R:239 R/plot-gpie.R:172
 msgid "Variable is not selected"
 msgstr "Spremenljivka ni izbrana"
 
@@ -251,7 +251,7 @@ msgstr "Tip funkcije"
 msgid "Plot normal distiribution"
 msgstr "Riši normalno distribucijo"
 
-#: R/plot-gdist.R:258 R/plot-gdist.R:580 R/plot-gline.R:122
+#: R/plot-gdist.R:258 R/plot-gdist.R:580 R/plot-gline.R:124
 msgid "Mean"
 msgstr "Povprečje"
 
@@ -323,7 +323,7 @@ msgstr "Riši Cauchyjevo distribucijo"
 msgid "Location"
 msgstr "Lokacija"
 
-#: R/plot-gdist.R:431 R/plot-gdist.R:456 R/plot-gdist.R:531 R/plot-gline.R:136
+#: R/plot-gdist.R:431 R/plot-gdist.R:456 R/plot-gdist.R:531 R/plot-gline.R:138
 msgid "Scale"
 msgstr "Merilo"
 
@@ -403,127 +403,127 @@ msgstr "Riši negativno binomsko distribucijo"
 msgid "Target number of success"
 msgstr "Cilljno število uspehov"
 
-#: R/plot-ghist.R:76 R/plot-gpie.R:73
+#: R/plot-ghist.R:78 R/plot-gpie.R:74
 msgid "Variable (pick one)"
 msgstr "Spremenljivka (izberite eno)"
 
-#: R/plot-ghist.R:107
+#: R/plot-ghist.R:109
 msgid "No. of bins"
 msgstr "Število razredov"
 
-#: R/plot-ghist.R:116
+#: R/plot-ghist.R:118
 msgid "Densities"
 msgstr "Gostote"
 
-#: R/plot-ghist.R:128
+#: R/plot-ghist.R:130
 msgid "Density estimation"
 msgstr "Ocena gostote"
 
-#: R/plot-ghist.R:163
+#: R/plot-ghist.R:165
 msgid "Histogram"
 msgstr "Histogram"
 
-#: R/plot-ghist.R:212
+#: R/plot-ghist.R:214
 msgid "Density"
 msgstr "Gostota"
 
-#: R/plot-gkm.R:76
+#: R/plot-gkm.R:79
 msgid "Time variable"
 msgstr "Časovna spremenljivka"
 
-#: R/plot-gkm.R:77
+#: R/plot-gkm.R:80
 msgid "Event variable (0=censor, 1=event)"
 msgstr "Indikatorska spremenljivka dogodka (0=cenzor, 1=dogodek)"
 
-#: R/plot-gkm.R:110
+#: R/plot-gkm.R:113
 msgid "Inside"
 msgstr "Znotraj"
 
-#: R/plot-gkm.R:111
+#: R/plot-gkm.R:114
 msgid "Outside (facet ignored)"
 msgstr "Zunaj (faseta zanemarjena)"
 
-#: R/plot-gkm.R:113
+#: R/plot-gkm.R:116
 msgid "No at risk."
 msgstr "Število ogroženih"
 
-#: R/plot-gkm.R:121
+#: R/plot-gkm.R:124
 msgid "Tick count"
 msgstr "Število tikov"
 
-#: R/plot-gkm.R:130
+#: R/plot-gkm.R:133
 msgid "Confidence interval"
 msgstr "Interval zaupanja"
 
-#: R/plot-gkm.R:131
+#: R/plot-gkm.R:134
 msgid "Dot censored symbol"
 msgstr "Simbol okrnjene pike"
 
-#: R/plot-gkm.R:132
+#: R/plot-gkm.R:135
 msgid "P-value (log-rank test)"
 msgstr "Vrednost P (test log rank)"
 
-#: R/plot-gkm.R:133
+#: R/plot-gkm.R:136
 msgid "Reference line at median survival"
 msgstr "Referenčna črta mediane preživetja"
 
-#: R/plot-gkm.R:167
+#: R/plot-gkm.R:170
 msgid "Kaplan-Meier plot"
 msgstr "Kaplan-Meierjev grafikon"
 
-#: R/plot-gkm.R:253
+#: R/plot-gkm.R:256
 msgid "Time variable is not selected."
 msgstr "Časovna spremenljivka ni izbrana"
 
-#: R/plot-gkm.R:259
+#: R/plot-gkm.R:262
 msgid "Event variable is not selected."
 msgstr "Spremenljivka digodka ni izbrana"
 
-#: R/plot-gkm.R:286
+#: R/plot-gkm.R:293
 msgid "Estimation failed in survfit().  This data may be inappropriate."
 msgstr "Ocena preživetja ni možna. Ti podatki morda niso primerni za izračun."
 
-#: R/plot-gkm.R:360
+#: R/plot-gkm.R:372
 msgid "There is only 1 group. P-value could not be calculated."
 msgstr "Obstaja samo ena skupina. Ne morem izračunati vrednosti P."
 
-#: R/plot-gkm.R:418
+#: R/plot-gkm.R:439
 msgid "Unknown error.  This plot may be broken."
 msgstr "Neznana napaka. Ta graf je najbrž pokvarjen."
 
-#: R/plot-gkm.R:542
+#: R/plot-gkm.R:584
 msgid "Median survival times did not exist."
 msgstr "Mediana časa preživetja ne obstaja."
 
-#: R/plot-gline.R:110
+#: R/plot-gline.R:112
 msgid "Line"
 msgstr "Črta"
 
-#: R/plot-gline.R:111
+#: R/plot-gline.R:113
 msgid "Step"
 msgstr "Korak"
 
-#: R/plot-gline.R:112
+#: R/plot-gline.R:114
 msgid "Area"
 msgstr "Ploskev"
 
-#: R/plot-gline.R:123
+#: R/plot-gline.R:125
 msgid "Sum"
 msgstr "Vsota"
 
-#: R/plot-gline.R:125
+#: R/plot-gline.R:127
 msgid "Summarization"
 msgstr "Izvleček"
 
-#: R/plot-gline.R:133
+#: R/plot-gline.R:135
 msgid "%Y-%m-%d (ISO 8601)"
 msgstr "%Y-%m-%d (ISO 8601)"
 
-#: R/plot-gline.R:134
+#: R/plot-gline.R:136
 msgid "%m/%d/%y (ISO C99)"
 msgstr "%m/%d/%y (ISO C99)"
 
-#: R/plot-gline.R:140
+#: R/plot-gline.R:142
 msgid ""
 "If you needs complementary informations about scales, \n"
 "please run or search ?format.Date, ?scale_x_date, or ?strptime."
@@ -531,11 +531,11 @@ msgstr ""
 "Če potrebujete več informacij o merilu,\n"
 "preiščite ?format.Date, ?scale_x_date, ali ?strptime."
 
-#: R/plot-gline.R:167
+#: R/plot-gline.R:169
 msgid "Line chart"
 msgstr "Črtni graf"
 
-#: R/plot-gpie.R:114
+#: R/plot-gpie.R:115
 msgid "Pie chart"
 msgstr "Krožni grafikon"
 
@@ -579,27 +579,27 @@ msgstr "Parametri druge distribucije"
 msgid "Q-Q plot"
 msgstr "Diagram primerjave kvantilov (QQ)"
 
-#: R/plot-gqq.R:211
+#: R/plot-gqq.R:217
 msgid "The log-normal distribution defined on the interval (0, +Inf)."
 msgstr "Log-normalna distribucija definirana na intervalu (0, +Inf)."
 
-#: R/plot-gqq.R:222
+#: R/plot-gqq.R:228
 msgid "The beta distribution defined on the interval [0, 1]."
 msgstr "Beta distribucija definirana na intervalu [0, 1]."
 
-#: R/plot-gqq.R:233
+#: R/plot-gqq.R:239
 msgid "The exponential distribution defined on the interval [0, +Inf)."
 msgstr "Eksponentna distribucija definirana na intervalu [0, +Inf)."
 
-#: R/plot-gqq.R:244
+#: R/plot-gqq.R:250
 msgid "The gamma distribution defined on the interval [0, +Inf)."
 msgstr "Gama distribucija definirana na intervalu [0, +Inf)."
 
-#: R/plot-gqq.R:255
+#: R/plot-gqq.R:261
 msgid "The weibull distribution defined on the interval [0, +Inf)."
 msgstr "Weinbullova distribucija definirana na intervalu [0, +Inf)."
 
-#: R/plot-gqq.R:315
+#: R/plot-gqq.R:321
 msgid "Parameter estimation failed."
 msgstr "Ocena parametra ni možna."
 
