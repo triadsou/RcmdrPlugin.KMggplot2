@@ -5,12 +5,12 @@ Title: An Rcmdr Plug-in for Kaplan-Meier Plots and Other Plots by Using the
 Version: 0.2-2
 Author: Triad sou. and Kengo NAGASHIMA
 Maintainer: Triad sou. <triadsou@gmail.com>
-Depends:
+Depends: 
     R (>= 3.2.3),
     Rcmdr (>= 2.2-3),
     ggplot2 (>= 1.0.1),
     grid
-Imports:
+Imports: 
     stats,
     methods,
     utils,
@@ -26,7 +26,7 @@ Description: A GUI front-end for ggplot2 allows Kaplan-Meier plot, histogram,
     Q-Q plot, box plot, errorbar plot, scatter plot, line chart, pie chart,
     bar chart, contour plot, and distribution plot.
 License: GPL-2
-Collate:
+Collate: 
     'aaa-package.R'
     'guiparts-aaa.R'
     'guiparts-checkboxes.R'
@@ -59,3 +59,6 @@ Collate:
     'util-nonFactors.R'
     'zzz.R'
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
