@@ -6,7 +6,7 @@ Version: 0.2-2
 Author: Triad sou. and Kengo NAGASHIMA
 Maintainer: Triad sou. <triadsou@gmail.com>
 Depends: 
-    R (>= 3.2.3),
+    R (>= 3.1.0),
     Rcmdr (>= 2.2-3),
     ggplot2 (>= 1.0.1),
     grid
