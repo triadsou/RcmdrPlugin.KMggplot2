@@ -10,7 +10,7 @@
 
 ## Changes in version 0.2-1 (2015-12-14)
 
-* Kaplan-Meier plot: fixed a bug was caused by a tie data handling. (Thanks to Dr. M. Felix Freshwater).
+* Kaplan-Meier plot: fixed a bug was caused by tie data handling. (Thanks to Dr. M. Felix Freshwater).
 * Slovenian translation by Matjaž Jeran (Thanks to Matjaž Jeran and their friends).
 * New ggplot2's theme (theme_dark).
 * New ggthemes's themes (theme_calc, theme_fivethirtyeight, theme_gdocs, theme_hc, theme_pander).
