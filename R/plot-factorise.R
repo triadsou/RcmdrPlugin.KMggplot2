@@ -107,7 +107,7 @@ factorize <- setRefClass(
             removeRmlist()
             return()
           }
-          if (parms$save == "1") savePlot(.plot)
+
         }
         
         removeRmlist()
