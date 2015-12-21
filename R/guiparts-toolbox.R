@@ -70,10 +70,15 @@ toolbox <- setRefClass(
         title        = gettextKmg2("Font size")
       )
       
-      psfontsname <- names(postscriptFonts())
+      if (.Platform$OS.type == "windows") {
+        osfontsname <- names(windowsFonts())
+      } else {
+        osfontsname <- names(postscriptFonts())
+      }
+
       family <<- variableListBox(
         parentWindow     = frame,
-        variableList     = psfontsname,
+        variableList     = osfontsname,
         listHeight       = 5,
         selectmode       = "single",
         initialSelection = fontFamily,
