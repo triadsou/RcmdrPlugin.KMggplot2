@@ -23,7 +23,9 @@ Imports:
     survival (>= 2.38-3),
     tcltk2 (>= 1.2-11)
 Suggests:
-    extrafont
+    extrafont,
+    knitr,
+    rmarkdown
 Description: A GUI front-end for ggplot2 allows Kaplan-Meier plot, histogram,
     Q-Q plot, box plot, errorbar plot, scatter plot, line chart, pie chart,
     bar chart, contour plot, and distribution plot.
@@ -61,6 +63,4 @@ Collate:
     'util-nonFactors.R'
     'zzz.R'
 RoxygenNote: 5.0.1
-Suggests: knitr,
-    rmarkdown
 VignetteBuilder: knitr
