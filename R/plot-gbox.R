@@ -234,29 +234,15 @@ gbox <- setRefClass(
 
       if (parms$plotType == "1") {
         if (parms$addJitter == "1") {
-          if (packageVersion("ggplot2") <= "1.0.1") {
-            geom <- paste0(
-              "stat_boxplot(geom = \"errorbar\", stat_params = list(width = 0.5), geom_params = list()) + ",
-              "geom_boxplot(outlier.colour = \"transparent\") + "
-            )
-          } else {
-            geom <- paste0(
-              "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
-              "geom_boxplot(outlier.colour = \"transparent\") + "
-            )
-          }
+          geom <- paste0(
+            "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
+            "geom_boxplot(outlier.colour = \"transparent\") + "
+          )
         } else {
-          if (packageVersion("ggplot2") <= "1.0.1") {
-            geom <- paste0(
-              "stat_boxplot(geom = \"errorbar\", stat_params = list(width = 0.5), geom_params = list()) + ",
-              "geom_boxplot() + "
-            )
-          } else {
-            geom <- paste0(
-              "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
-              "geom_boxplot() + "
-            )
-          }
+          geom <- paste0(
+            "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
+            "geom_boxplot() + "
+          )
         }
       } else if (parms$plotType == "2") {
         geom <- paste0(
@@ -264,29 +250,15 @@ gbox <- setRefClass(
           "stat_summary(fun.y = \"median\", geom = \"point\", pch = 10, size = 4) + "
         )
       } else if (parms$plotType == "3") {
-        if (packageVersion("ggplot2") <= "1.0.1") {
-          geom <- paste0(
-            "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
-            "stat_summary(fun.data = \"mean_cl_normal\", geom = \"errorbar\", conf.int = .95, width = 0.1) + "
-          )
-        } else {
-          geom <- paste0(
-            "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
-            "stat_summary(fun.data = \"mean_cl_normal\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
-          )
-        }
+        geom <- paste0(
+          "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
+          "stat_summary(fun.data = \"mean_cl_normal\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
+        )
       } else if (parms$plotType == "4") {
-        if (packageVersion("ggplot2") <= "1.0.1") {
-          geom <- paste(
-            "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
-            "stat_summary(fun.data = \"mean_cl_boot\", geom = \"errorbar\", conf.int = .95, width = 0.1) + "
-          )
-        } else {
-          geom <- paste(
-            "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
-            "stat_summary(fun.data = \"mean_cl_boot\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
-          )
-        }
+        geom <- paste(
+          "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
+          "stat_summary(fun.data = \"mean_cl_boot\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
+        )
       }
 
       if (parms$addJitter == "1") {

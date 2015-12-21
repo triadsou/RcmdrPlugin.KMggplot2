@@ -88,11 +88,7 @@ plot_base <- setRefClass(
           return()
         } else if (errorCode == FALSE) {
 
-          if (packageVersion("ggplot2") <= "1.0.1") {
-            logger("\nsapply(c(\"ggplot2\", \"grid\"), require, character.only = TRUE)")
-          } else {
-            logger("require(\"ggplot2\")")
-          }
+          logger("require(\"ggplot2\")")
 
           setDataframe(parms)
           
@@ -197,16 +193,7 @@ plot_base <- setRefClass(
       ))
       if (file == "") return()
 
-      if (packageVersion("ggplot2") <= "1.0.1") {
-        # deprecated
-        if (class(.self)[1] == "km") {
-          command <- paste0("RcmdrPlugin.KMggplot2::ggsaveKmg2(filename = \"", file, "\", plot = ", plotName, ")")
-        } else {
-          command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
-        }
-      } else {
-        command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
-      }
+      command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
       doItAndPrint(command)
 
       return()

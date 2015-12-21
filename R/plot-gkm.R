@@ -265,11 +265,7 @@ gkm <- setRefClass(
       } else {
         
         if (mode == 1) {
-          if (packageVersion("ggplot2") <= "1.0.1") {
-            logger("\nsapply(c(\"ggplot2\", \"grid\"), require, character.only = TRUE)")
-          } else {
-            logger("require(\"ggplot2\")")
-          }
+          logger("require(\"ggplot2\")")
         }
 
         setDataframe(parms)
@@ -515,17 +511,10 @@ gkm <- setRefClass(
     getGeom = function(parms) {
 
       if (parms$confInt == "1") {
-        if (packageVersion("ggplot2") <= "1.0.1") {
-          geom <- paste0(
-            "geom_step(data = subset(.fit, !is.na(upper)), aes(y = upper), size = 1, lty = 2, alpha = 0.5, show_guide = FALSE, na.rm = FALSE) + ",
-            "geom_step(data = subset(.fit, !is.na(lower)), aes(y = lower), size = 1, lty = 2, alpha = 0.5, show_guide = FALSE, na.rm = FALSE) + "
-          )
-        } else {
-          geom <- paste0(
-            "geom_step(data = subset(.fit, !is.na(upper)), aes(y = upper), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + ",
-            "geom_step(data = subset(.fit, !is.na(lower)), aes(y = lower), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + "
-          )
-        }
+        geom <- paste0(
+          "geom_step(data = subset(.fit, !is.na(upper)), aes(y = upper), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + ",
+          "geom_step(data = subset(.fit, !is.na(lower)), aes(y = lower), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + "
+        )
       } else {
         geom <- ""
       }
@@ -548,31 +537,17 @@ gkm <- setRefClass(
       }
 
       if (parms$plotType == "2") {
-        if (packageVersion("ggplot2") <= "1.0.1") {
-          geom <- paste0(
-            geom,
-            "geom_text(data = .nrisk, aes(y = y, x = x, label = Freq, colour = z), show_guide = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
-          )
-        } else {
-          geom <- paste0(
-            geom,
-            "geom_text(data = .nrisk, aes(y = y, x = x, label = Freq, colour = z), show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
-          )
-        }
+        geom <- paste0(
+          geom,
+          "geom_text(data = .nrisk, aes(y = y, x = x, label = Freq, colour = z), show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
+        )
       }
        
       if (parms$pValue == "1" && length(unique(.df$z)) > 1) {
-        if (packageVersion("ggplot2") <= "1.0.1") {
-          geom <- paste0(
-            geom,
-            "geom_text(data = .pval, aes(y = y, x = x, label = label), colour = \"black\", hjust = 0, vjust = -0.5, parse = TRUE, show_guide = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
-          )
-        } else {
-          geom <- paste0(
-            geom,
-            "geom_text(data = .pval, aes(y = y, x = x, label = label), colour = \"black\", hjust = 0, vjust = -0.5, parse = TRUE, show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
-          )
-        }
+        geom <- paste0(
+          geom,
+          "geom_text(data = .pval, aes(y = y, x = x, label = label), colour = \"black\", hjust = 0, vjust = -0.5, parse = TRUE, show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
+        )
       }
       
       if (parms$refMedian == "1" && !all(is.infinite(.med$median))) {
