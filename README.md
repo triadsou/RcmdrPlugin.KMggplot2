@@ -12,7 +12,7 @@ A GUI front-end for ggplot2 allows Kaplan-Meier plot, histogram, Q-Q plot, box p
 Get the released version from CRAN:
 
 ```R
-install.packages("ggplot2")
+install.packages("RcmdrPlugin.KMggplot2")
 ```
 
 Or the development version from github:
