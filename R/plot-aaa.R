@@ -186,13 +186,14 @@ plot_base <- setRefClass(
       plotName <- deparse(substitute(plot))
       if (.Platform$OS.type == "windows") {
         file <- tclvalue(tkgetSaveFile(
-          filetypes = paste("{{pdf (Portable Document Format)} {.pdf}}",
+          filetypes = paste("{{All Files} {*}}",
+                            "{{pdf (Portable Document Format)} {.pdf}}",
                             "{{jpg (Joint Photographic Experts Group)} {.jpg}}",
                             "{{tiff (Tagged Image File Format)} {.tiff}}",
                             "{{bmp (Bitmap Image)} {.bmp}}",
                             "{{svg (Scalable Vector Graphics)} {.svg}}",
                             "{{png (Portable Network Graphics)} {.png}}"),
-          defaultextension = ".png", initialfile = "Rplots"
+          defaultextension = ".png", initialfile = "Rplots.png"
         ))
       } else {
         file <- tclvalue(tkgetSaveFile(
