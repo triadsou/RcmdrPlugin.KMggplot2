@@ -18,7 +18,7 @@ Dataset requirements are same as `survfit` function, which works with `Surv` obj
 `Surv` objects are generated from `Surv` function.
 `RcmdrPlugin.KMggplot2` calls as follows:
 
-```
+```r
 survfit(Surv(time = x, event = y, type = "right") ~ z + s + t, .df)
 ```
 
