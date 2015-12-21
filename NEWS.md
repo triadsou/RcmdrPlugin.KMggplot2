@@ -2,10 +2,15 @@
 # RcmdrPlugin.KMggplot2 package
 
 
-## Changes in version 0.2-2 (2015-12-15)
+## Changes in version 0.2-2 (2015-12-21)
 
 * New ggplot2's theme (theme_linedraw, theme_light).
+* New ggthemes's themes (theme_base, theme_par).
 * Fixed a bug was caused by new ggplot2's theme.
+* Fixed a bug related to ggthemes 3.0.0.
+* Fixed a bug related to windows fonts.
+* Added a vignett for dataset requirements to make Kaplan-Meier plot.
+* Added a vignett for extrafont.
 
 
 ## Changes in version 0.2-1 (2015-12-14)
