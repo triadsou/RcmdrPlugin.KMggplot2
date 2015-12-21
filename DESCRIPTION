@@ -7,16 +7,16 @@ Author: Triad sou. and Kengo NAGASHIMA
 Maintainer: Triad sou. <triadsou@gmail.com>
 Depends: 
     R (>= 3.1.0),
+    grid,
     Rcmdr (>= 2.2-3),
-    ggplot2 (>= 1.0.1),
-    grid
+    ggplot2 (>= 2.0.0)
 Imports: 
     stats,
     methods,
     utils,
     grDevices,
     graphics,
-    ggthemes (>= 2.2.1),
+    ggthemes (>= 3.0.0),
     plyr (>= 1.8.3),
     RColorBrewer (>= 1.1-2),
     scales (>= 0.3.0),

@@ -330,32 +330,56 @@ plot_base <- setRefClass(
         theme <- "theme_light"
       } else if (index == "theme_dark") {
         theme <- "theme_dark"
-      } else if (index == "theme_tufte") {
-        theme <- "ggthemes::theme_tufte"
-      } else if (index == "theme_economist") {
-        theme <- "ggthemes::theme_economist"
-      } else if (index == "theme_solarized") {
-        theme <- "ggthemes::theme_solarized"
-      } else if (index == "theme_stata") {
-        theme <- "ggthemes::theme_stata"
-      } else if (index == "theme_excel") {
-        theme <- "ggthemes::theme_excel"
-      } else if (index == "theme_igray") {
-        theme <- "ggthemes::theme_igray"
-      } else if (index == "theme_few") {
-        theme <- "ggthemes::theme_few"
-      } else if (index == "theme_wsj2") {
-        theme <- "RcmdrPlugin.KMggplot2::theme_wsj2"
+      } else if (index == "theme_base") {
+        theme <- "ggthemes::theme_base"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
       } else if (index == "theme_calc") {
         theme <- "ggthemes::theme_calc"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_economist") {
+        theme <- "ggthemes::theme_economist"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_excel") {
+        theme <- "ggthemes::theme_excel"
+      } else if (index == "theme_few") {
+        theme <- "ggthemes::theme_few"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
       } else if (index == "theme_fivethirtyeight") {
         theme <- "ggthemes::theme_fivethirtyeight"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
       } else if (index == "theme_gdocs") {
         theme <- "ggthemes::theme_gdocs"
       } else if (index == "theme_hc") {
         theme <- "ggthemes::theme_hc"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_par") {
+        theme <- "ggthemes::theme_par"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
       } else if (index == "theme_pander") {
         theme <- "ggthemes::theme_pander"
+      } else if (index == "theme_solarized") {
+        theme <- "ggthemes::theme_solarized"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_stata") {
+        theme <- "ggthemes::theme_stata"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_tufte") {
+        theme <- "ggthemes::theme_tufte"
+      } else if (index == "theme_wsj2") {
+        theme <- "RcmdrPlugin.KMggplot2::theme_wsj2"
+        commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
+        registRmlist(ggthemes_data)
+      } else if (index == "theme_igray") {
+        theme <- "ggthemes::theme_igray"
       } else {
         theme <- "theme_bw"
       }

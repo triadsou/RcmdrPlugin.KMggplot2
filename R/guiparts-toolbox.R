@@ -101,33 +101,18 @@ toolbox <- setRefClass(
         title      = gettextKmg2("Graph options")
       )
       
-      
-      if (packageVersion("ggplot2") <= "1.0.1") {
-        ggplotThemes <- c(
-          "theme_bw", "theme_simple", "theme_classic",
-          "theme_gray", "theme_minimal", 
-          "theme_tufte", "theme_economist", "theme_solarized", 
-          "theme_stata", "theme_excel", "theme_igray",
-          "theme_few", "theme_wsj2", "theme_calc", 
-          "theme_fivethirtyeight", "theme_gdocs",
-          "theme_hc", "theme_pander"
-        )
-      } else {
-        ggplotThemes <- c(
+      theme <<- variableListBox(
+        parentWindow     = frame,
+        variableList     = c(
           "theme_bw", "theme_simple", "theme_classic",
           "theme_gray", "theme_minimal",
           "theme_linedraw", "theme_light", "theme_dark",
-          "theme_tufte", "theme_economist", "theme_solarized", 
-          "theme_stata", "theme_excel", "theme_igray",
-          "theme_few", "theme_wsj2", "theme_calc", 
-          "theme_fivethirtyeight", "theme_gdocs",
-          "theme_hc", "theme_pander"
-        )
-      }
-      
-      theme <<- variableListBox(
-        parentWindow     = frame,
-        variableList     = ggplotThemes,
+          "theme_base", "theme_calc", "theme_economist", 
+          "theme_excel", "theme_few", "theme_fivethirtyeight", 
+          "theme_gdocs", "theme_hc", "theme_par",
+          "theme_pander", "theme_solarized", "theme_stata",
+          "theme_tufte", "theme_wsj2", "theme_igray"
+        ),
         listHeight       = 5,
         selectmode       = "single",
         initialSelection = themeBase,
