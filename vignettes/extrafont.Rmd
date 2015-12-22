@@ -17,6 +17,10 @@ First, import the fonts installed on the system.
 install.packages("extrafont")
 library(extrafont)
 font_import()
+loadfonts()
+loadfonts(device = "postscript")
+# For Windows
+# loadfonts(device = "win")
 ```
 
 
@@ -27,4 +31,4 @@ library(RcmdrPlugin.KMggplot2)
 ```
 
 
-If you want to see more details: [README file of `extrafont`](https://cran.r-project.org/web/packages/extrafont/README.html)
+If you want to see more details: [Using extrafont - CRAN](https://cran.r-project.org/web/packages/extrafont/README.html)
