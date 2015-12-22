@@ -22,6 +22,8 @@ Imports:
     scales (>= 0.3.0),
     survival (>= 2.38-3),
     tcltk2 (>= 1.2-11)
+Suggests:
+    extrafont
 Description: A GUI front-end for ggplot2 allows Kaplan-Meier plot, histogram,
     Q-Q plot, box plot, errorbar plot, scatter plot, line chart, pie chart,
     bar chart, contour plot, and distribution plot.
