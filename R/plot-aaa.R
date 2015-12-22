@@ -187,7 +187,6 @@ plot_base <- setRefClass(
       if (.Platform$OS.type == "windows") {
         file <- tclvalue(tkgetSaveFile(
           filetypes = paste("{{pdf (Portable Document Format)} {.pdf}}",
-                            "{{eps (Encapsulated PostScript)} {.eps}}",
                             "{{jpg (Joint Photographic Experts Group)} {.jpg}}",
                             "{{tiff (Tagged Image File Format)} {.tiff}}",
                             "{{bmp (Bitmap Image)} {.bmp}}",
@@ -199,7 +198,6 @@ plot_base <- setRefClass(
         file <- tclvalue(tkgetSaveFile(
           filetypes = paste("{{png (Portable Network Graphics)} {.png}}",
                             "{{pdf (Portable Document Format)} {.pdf}}",
-                            "{{eps (Encapsulated PostScript)} {.eps}}",
                             "{{jpg (Joint Photographic Experts Group)} {.jpg}}",
                             "{{tiff (Tagged Image File Format)} {.tiff}}",
                             "{{bmp (Bitmap Image)} {.bmp}}",
