@@ -185,11 +185,8 @@ plot_base <- setRefClass(
 
       plotName <- deparse(substitute(plot))
       file <- tclvalue(tkgetSaveFile(
-        filetypes = paste(
-          "{\"PNG (Portable Network Graphics)\" {\".png\"}}",
-          "{\"PDF (Portable Document Format)\" {\".pdf\"}}",
-          "{\"JPEG (Joint Photographic Experts Group)\" {\".jpg\"}}"
-        ), defaultextension = "png", initialfile = "GraphSave"
+        filetypes = '{"PDF (Portable Document Format)" {".pdf"}} {"JPEG (Joint Photographic Experts Group)" {".jpg"}} {"PNG (Portable Network Graphics)" {".png"}}',
+        defaultextension = "png", initialfile = "Rplots.png"
       ))
       if (file == "") return()
 
