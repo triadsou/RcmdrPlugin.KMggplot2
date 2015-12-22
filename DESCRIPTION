@@ -17,7 +17,7 @@ Imports:
     grDevices,
     graphics,
     ggthemes (>= 3.0.0),
-    plyr (>= 1.8.3),
+    plyr (>= 1.8.1),
     RColorBrewer (>= 1.1-2),
     scales (>= 0.3.0),
     survival (>= 2.38-3),
