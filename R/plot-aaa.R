@@ -184,10 +184,29 @@ plot_base <- setRefClass(
     savePlot = function(plot) {
 
       plotName <- deparse(substitute(plot))
-      file <- tclvalue(tkgetSaveFile(
-        filetypes = '{"PDF (Portable Document Format)" {".pdf"}} {"JPEG (Joint Photographic Experts Group)" {".jpg"}} {"PNG (Portable Network Graphics)" {".png"}}',
-        defaultextension = "png", initialfile = "Rplots.png"
-      ))
+      if (.Platform$OS.type == "windows") {
+        file <- tclvalue(tkgetSaveFile(
+          filetypes = paste("{{pdf (Portable Document Format)} {.pdf}}",
+                            "{{eps (Encapsulated PostScript)} {.eps}}",
+                            "{{jpg (Joint Photographic Experts Group)} {.jpg}}",
+                            "{{tiff (Tagged Image File Format)} {.tiff}}",
+                            "{{bmp (Bitmap Image)} {.bmp}}",
+                            "{{svg (Scalable Vector Graphics)} {.svg}}",
+                            "{{png (Portable Network Graphics)} {.png}}"),
+          defaultextension = ".png", initialfile = "Rplots"
+        ))
+      } else {
+        file <- tclvalue(tkgetSaveFile(
+          filetypes = paste("{{png (Portable Network Graphics)} {.png}}",
+                            "{{pdf (Portable Document Format)} {.pdf}}",
+                            "{{eps (Encapsulated PostScript)} {.eps}}",
+                            "{{jpg (Joint Photographic Experts Group)} {.jpg}}",
+                            "{{tiff (Tagged Image File Format)} {.tiff}}",
+                            "{{bmp (Bitmap Image)} {.bmp}}",
+                            "{{svg (Scalable Vector Graphics)} {.svg}}"),
+          initialfile = "Rplots"
+        ))
+      }
       if (file == "") return()
 
       command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
