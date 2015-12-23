@@ -40,6 +40,7 @@
 #' @docType class
 #' @keywords hplot
 #' @importFrom RColorBrewer brewer.pal.info
+#' @importFrom grDevices windowsFonts postscriptFonts
 #' @export toolbox
 toolbox <- setRefClass(
 
