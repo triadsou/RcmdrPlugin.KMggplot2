@@ -20,5 +20,4 @@
 #' @import stats
 #' @import methods
 #' @import Rcmdr
-#' @import grDevices
 NULL

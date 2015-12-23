@@ -1,3 +1,4 @@
+#' @importFrom grDevices windowsFonts
 .onAttach <- function(libname, pkgname) {
 
   if (!interactive()) return()
