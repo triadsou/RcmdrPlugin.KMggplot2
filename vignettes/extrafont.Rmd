@@ -4,7 +4,7 @@ author: "Triad sou."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{The `extrafont` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,7 +15,7 @@ The `extrafont` package makes it easy to use system TrueType fonts and with PDF 
 First, import the fonts installed on the system. 
 ```r
 install.packages("extrafont")
-library(extrafont)
+library("extrafont")
 font_import()
 loadfonts()
 loadfonts(device = "postscript")
@@ -26,8 +26,8 @@ loadfonts(device = "postscript")
 
 After installation, you load the `extrafont` package before starting `RcmdrPlugin.KMggplot2`.
 ```r
-library(extrafont)
-library(RcmdrPlugin.KMggplot2)
+library("extrafont")
+library("RcmdrPlugin.KMggplot2")
 ```
 
 
