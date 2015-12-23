@@ -2,7 +2,7 @@ Package: RcmdrPlugin.KMggplot2
 Type: Package
 Title: An Rcmdr Plug-in for Kaplan-Meier Plots and Other Plots by Using the
     ggplot2 Package
-Version: 0.2-2
+Version: 0.2-3
 Author: Triad sou. and Kengo NAGASHIMA
 Maintainer: Triad sou. <triadsou@gmail.com>
 Depends: 
