@@ -208,7 +208,11 @@ plot_base <- setRefClass(
       }
       if (file == "") return()
 
-      command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
+      if (class(.self)[1] == "gkm") {
+        command <- paste0("RcmdrPlugin.KMggplot2::ggsaveKmg2(filename = \"", file, "\", plot = ", plotName, ")")
+      } else {
+        command <- paste0("ggsave(filename = \"", file, "\", plot = ", plotName, ")")
+      }
       doItAndPrint(command)
 
       return()

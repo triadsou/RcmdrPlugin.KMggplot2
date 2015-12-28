@@ -1,7 +1,7 @@
 #' A Modified Function of \code{ggsave} for \code{recordedplot} Class Objects
 #'
 #' This is a modified function of \code{ggsave} for \code{recordedplot} class
-#' objects (deprecated, left for compatibility purposes).
+#' objects.
 #'
 #' @param filename file name/filename of plot
 #' @param plot plot to save, defaults to last plot displayed
