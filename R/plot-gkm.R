@@ -490,7 +490,7 @@ gkm <- setRefClass(
         var <- c(var, paste0("t = ", ActiveDataSet(), "$", parms$t))
       }
       command <- do.call(paste, c(var, list(sep = ", ")))
-      command <- paste0(".df <- data.frame(", command, ")")
+      command <- paste0(".df <- na.omit(data.frame(", command, "))")
       commandDoIt(command)
 
       command <- paste0(
@@ -684,7 +684,11 @@ gkm <- setRefClass(
 
         if (length(parms$z) != 0) {
           opts <- " + theme(legend.position = \"right\")"
-          command <- ".nrisk$y <- ((.nrisk$y - 0.025) / (max(.nrisk$y) - 0.025) + 0.125) * 0.8"
+          if (length(unique(factor(.fit$z))) == 2) {
+            command <- ".nrisk$y <- ((.nrisk$y - 0.025) / (max(.nrisk$y) - 0.025) + 0.5) * 0.5"
+          } else {
+            command <- ".nrisk$y <- ((.nrisk$y - 0.025) / (max(.nrisk$y) - 0.025) + 0.125) * 0.8"
+          }
         } else {
           command <- ".nrisk$y <- 0.5"
         }
