@@ -104,6 +104,7 @@ gbox <- setRefClass(
         top    = alternateFrame,
         labels = list(
           gettextKmg2("Box plot"),
+          gettextKmg2("Notched box plot"),
           gettextKmg2("Violin plot"),
           gettextKmg2("95% C.I. (t distribution)"),
           gettextKmg2("95% C.I. (bootstrap)")
@@ -245,16 +246,28 @@ gbox <- setRefClass(
           )
         }
       } else if (parms$plotType == "2") {
+        if (parms$addJitter == "1") {
+          geom <- paste0(
+            "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
+            "geom_boxplot(outlier.colour = \"transparent\", notch = TRUE) + "
+          )
+        } else {
+          geom <- paste0(
+            "stat_boxplot(geom = \"errorbar\", width = 0.5) + ",
+            "geom_boxplot(notch = TRUE) + "
+          )
+        }
+      } else if (parms$plotType == "3") {
         geom <- paste0(
           "geom_violin() + ",
           "stat_summary(fun.y = \"median\", geom = \"point\", pch = 10, size = 4) + "
         )
-      } else if (parms$plotType == "3") {
+      } else if (parms$plotType == "4") {
         geom <- paste0(
           "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
           "stat_summary(fun.data = \"mean_cl_normal\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
         )
-      } else if (parms$plotType == "4") {
+      } else if (parms$plotType == "5") {
         geom <- paste(
           "stat_summary(fun.y = \"mean\", geom = \"point\") + ",  
           "stat_summary(fun.data = \"mean_cl_boot\", geom = \"errorbar\", width = 0.1, fun.args = list(conf.int = 0.95)) + "
