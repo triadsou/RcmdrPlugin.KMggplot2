@@ -39,9 +39,10 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
 
 \item{kmplot}{If \code{TRUE}, missing values are replaced by the previous
-values. This option is needed if the last observation has event, in which
-case the upper and lower values of the last observation are missing. This
-processing is optimized for results from the survfit function.}
+values. This option is needed to make Kaplan-Meier plots if the last
+observation has event, in which case the upper and lower values of the
+last observation are missing. This processing is optimized for results
+from the survfit function.}
 
 \item{...}{other arguments passed on to \code{\link{layer}}. There are
   three types of arguments you can use here:

@@ -12,9 +12,10 @@
 #'   \code{geom_ribbon}.
 #' @inheritParams ggplot2:::geom_ribbon
 #' @param kmplot If \code{TRUE}, missing values are replaced by the previous
-#' values. This option is needed if the last observation has event, in which
-#' case the upper and lower values of the last observation are missing. This
-#' processing is optimized for results from the survfit function.
+#' values. This option is needed to make Kaplan-Meier plots if the last
+#' observation has event, in which case the upper and lower values of the
+#' last observation are missing. This processing is optimized for results
+#' from the survfit function.
 #' @export
 #' @examples
 #' huron <- data.frame(year = 1875:1972, level = as.vector(LakeHuron))
