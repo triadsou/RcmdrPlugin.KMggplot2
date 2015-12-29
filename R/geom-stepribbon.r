@@ -1,8 +1,8 @@
 #' Step ribbon plots.
 #'
 #' \code{geom_stepribbon} is an extension of the \code{geom_ribbon}, and
-#' is optimized for Kaplan-Meier plots with confidence intervals or a
-#' confidence band.
+#' is optimized for Kaplan-Meier plots with pointwise confidence intervals
+#' or a confidence band.
 #'
 #' @section Aesthetics:
 #' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "ribbon")}

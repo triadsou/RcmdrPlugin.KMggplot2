@@ -10,8 +10,8 @@ vignette: >
 ---
 
 The `geom_stepribbon` is an extension of the `geom_ribbon`, and is
-optimized for Kaplan-Meier plots with confidence intervals or a
-confidence band.
+optimized for Kaplan-Meier plots with pointwise confidence intervals
+or a confidence band.
 
 ## Usage
 
