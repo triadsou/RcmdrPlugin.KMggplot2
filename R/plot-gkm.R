@@ -128,9 +128,10 @@ gkm <- setRefClass(
       cbbox1 <<- checkboxes$new()
       cbbox1$front(
         top        = alternateFrame,
-        initValues = list("0", "0", "0", "0"),
+        initValues = list("0", "0", "0", "0", "0"),
         labels     = list(
-          gettextKmg2("Confidence interval"),
+          gettextKmg2("Confidence interval (dotted lines)"),
+          gettextKmg2("Confidence interval (band)"),
           gettextKmg2("Dot censored symbol"),
           gettextKmg2("P-value (log-rank test)"),
           gettextKmg2("Reference line at median survival")
@@ -216,9 +217,10 @@ gkm <- setRefClass(
       plotType  <- tclvalue(rbbox1$value)
       tickCount <- tclvalue(lbbox2$fields[[1]]$value)
       confInt   <- tclvalue(cbbox1$value[[1]])
-      dotCensor <- tclvalue(cbbox1$value[[2]])
-      pValue    <- tclvalue(cbbox1$value[[3]])
-      refMedian <- tclvalue(cbbox1$value[[4]])
+      confIntB  <- tclvalue(cbbox1$value[[2]])
+      dotCensor <- tclvalue(cbbox1$value[[3]])
+      pValue    <- tclvalue(cbbox1$value[[4]])
+      refMedian <- tclvalue(cbbox1$value[[5]])
       
       if (is.na(as.numeric(tickCount)) || as.numeric(tickCount) <= 0) {
         tickCount <- "4"
@@ -242,7 +244,7 @@ gkm <- setRefClass(
         x = x, y = y, z = z, s = s, t = t,
         xlab = xlab, xauto = xauto, ylab = ylab, yauto = yauto, zlab = zlab, main = main,
         size = size, family = family, colour = colour, save = save, theme = theme,
-        plotType = plotType, tickCount = tickCount, confInt = confInt,
+        plotType = plotType, tickCount = tickCount, confInt = confInt, confIntB = confIntB,
         dotCensor = dotCensor, pValue = pValue, refMedian = refMedian, zst = zst
       )
 
@@ -518,7 +520,14 @@ gkm <- setRefClass(
       } else {
         geom <- ""
       }
-
+      
+      if (parms$confIntB == "1") {
+        geom <- paste0(
+          geom,
+          "RcmdrPlugin.KMggplot2::geom_stepribbon(data = .fit, aes(x = x, ymin = lower, ymax = upper, fill = z), alpha = 0.25, colour = \"transparent\", show.legend = FALSE, kmplot = TRUE) + "
+        )
+      }
+      
       geom <- paste0(geom, "geom_step(size = 1.5) + ")
 
       if (nrow(.cens) > 0) {
@@ -568,12 +577,18 @@ gkm <- setRefClass(
       
       nTick    <- as.numeric(parms$tickCount) - 1
       byLength <- signif((max(.fit$x) + nTick/2)/nTick, -round(log10(max(.fit$x)), 0))
-
-      paste0(
+      scales <- paste0(
         "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
         "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + ",
         "scale_colour_brewer(palette = \"", parms$colour, "\") + "
       )
+      if (parms$confIntB == "1") {
+        scales <- paste0(
+          scales,
+          "scale_fill_brewer(palette = \"", parms$colour, "\") + "
+        )
+      }
+      scales
       
     },
 
