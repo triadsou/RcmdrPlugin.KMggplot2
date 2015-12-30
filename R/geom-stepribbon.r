@@ -8,15 +8,14 @@
 #' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "ribbon")}
 #'
 #' @seealso
-#'   \code{\link{ggplot2:geom_ribbon}} \code{geom_stepribbon} inherits from 
-#'   \code{geom_ribbon}.
+#'   \code{\link[ggplot2:geom_ribbon]{geom_ribbon}} \code{geom_stepribbon}
+#'   inherits from \code{geom_ribbon}.
 #' @inheritParams ggplot2:::geom_ribbon
 #' @param kmplot If \code{TRUE}, missing values are replaced by the previous
 #' values. This option is needed to make Kaplan-Meier plots if the last
 #' observation has event, in which case the upper and lower values of the
 #' last observation are missing. This processing is optimized for results
 #' from the survfit function.
-#' @export
 #' @examples
 #' huron <- data.frame(year = 1875:1972, level = as.vector(LakeHuron))
 #' h <- ggplot(huron, aes(year))
@@ -25,6 +24,7 @@
 #' h + geom_ribbon(aes(ymin = level - 1, ymax = level + 1), fill = "grey70") +
 #'     geom_line(aes(y = level))
 #' @rdname geom_stepribbon
+#' @importFrom ggplot2 layer GeomRibbon
 #' @export
 geom_stepribbon <- function(
   mapping = NULL, data = NULL, stat = "identity", position = "identity",
@@ -55,12 +55,12 @@ GeomStepribbon <- ggproto(
   extra_params = c("na.rm", "kmplot"),
   
   draw_group = function(data, panel_scales, coord, na.rm = FALSE) {
-    if (na.rm) data <- data[stats::complete.cases(data[c("x", "ymin", "ymax")]), ]
+    if (na.rm) data <- data[complete.cases(data[c("x", "ymin", "ymax")]), ]
     data <- rbind(data, data)
     data <- data[order(data$x), ]
     data$x <- c(data$x[2:nrow(data)], NA)
-    data <- data[stats::complete.cases(data["x"]), ]
-    ggplot2:::GeomRibbon$draw_group(data, panel_scales, coord, na.rm = FALSE)
+    data <- data[complete.cases(data["x"]), ]
+    GeomRibbon$draw_group(data, panel_scales, coord, na.rm = FALSE)
   },
   
   setup_data = function(data, params) {
