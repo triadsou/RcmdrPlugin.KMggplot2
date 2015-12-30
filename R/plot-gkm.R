@@ -577,18 +577,18 @@ gkm <- setRefClass(
       
       nTick    <- as.numeric(parms$tickCount) - 1
       byLength <- signif((max(.fit$x) + nTick/2)/nTick, -round(log10(max(.fit$x)), 0))
-      scales <- paste0(
+      scale <- paste0(
         "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
         "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + ",
         "scale_colour_brewer(palette = \"", parms$colour, "\") + "
       )
       if (parms$confIntB == "1") {
-        scales <- paste0(
-          scales,
+        scale <- paste0(
+          scale,
           "scale_fill_brewer(palette = \"", parms$colour, "\") + "
         )
       }
-      scales
+      scale
       
     },
 
