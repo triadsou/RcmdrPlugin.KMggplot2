@@ -57,8 +57,8 @@ from the survfit function.}
 }
 \description{
 \code{geom_stepribbon} is an extension of the \code{geom_ribbon}, and
-is optimized for Kaplan-Meier plots with confidence intervals or a
-confidence band.
+is optimized for Kaplan-Meier plots with pointwise confidence intervals
+or a confidence band.
 }
 \section{Aesthetics}{
 
