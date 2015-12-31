@@ -1,7 +1,7 @@
 ---
 title: "Dataset requirements to make Kaplan-Meier plot with RcmdrPlugin.KMggplot2"
 author: "Triad sou."
-date: "`r Sys.Date()`"
+date: "2015-12-23"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Dataset requirements for Kaplan-Meier plot}

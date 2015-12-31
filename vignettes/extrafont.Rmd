@@ -1,10 +1,10 @@
 ---
-title: "The `extrafont` package"
+title: "Extend with the `extrafont` package"
 author: "Triad sou."
-date: "`r Sys.Date()`"
+date: "2015-12-31"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The `extrafont` package}
+  %\VignetteIndexEntry{Extend with the `extrafont` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
