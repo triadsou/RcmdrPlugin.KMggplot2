@@ -18,8 +18,8 @@
 * Fixed a bug related to ggthemes 3.0.0.
 * Fixed a bug related to windows fonts.
 * Fixed a bug related to file saving.
-* Added a vignett for dataset requirements to make Kaplan-Meier plot.
-* Added a vignett for extrafont.
+* Added a vignette for dataset requirements to make Kaplan-Meier plot.
+* Added a vignette for extrafont.
 
 
 ## Changes in version 0.2-1 (2015-12-14)
