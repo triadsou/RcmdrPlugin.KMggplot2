@@ -1,11 +1,11 @@
 # # Matjaž Jeran <matjaz.jeran@amis.net>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-1\n"
+"Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-30 22:46+0900\n"
 "PO-Revision-Date: 2015-12-30 22:47+0900\n"
-"Last-Translator: Triad sou. <triadsou@gmail.com>\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-1\n"
+"Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-30 22:26+0900\n"
 "PO-Revision-Date: 2015-12-30 22:28+0900\n"
