@@ -1,7 +1,7 @@
 ---
 title: "Dataset requirements to make Kaplan-Meier plot with RcmdrPlugin.KMggplot2"
 author: "Triad sou."
-date: "2015-12-23"
+date: "2016-01-04"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Dataset requirements for Kaplan-Meier plot}
@@ -26,7 +26,7 @@ survfit(Surv(time = x, event = y, type = "right") ~ z + s + t, .df)
 * `time`
     * The follow up time variable.
 * `event`
-    * The status indicator variable, 0 = alive, 1 = dead.
+    * The status indicator variable, 0 = alive (censor), 1 = dead (event).
 * `type`
     * Character string specifying the type of censoring. `RcmdrPlugin.KMggplot2` can only handle "right" censoring.
 * `z`, `s`, `t`
@@ -45,3 +45,9 @@ data(dataKm, package = "RcmdrPlugin.KMggplot2")
 exampleData <- dataKm[, c("time", "event", "trt", "sex", "marker")]
 knitr::kable(head(exampleData, 10))
 ```
+
+In this case: 
+
+* `time`: "time"
+* `event`: "event" (0 = alive (censor), 1 = dead (event))
+* `z`, `s`, or `t`: "trt", "sex", or "marker"
