@@ -1,4 +1,5 @@
-# # Matjaž Jeran <matjaz.jeran@amis.net>, 2015.
+﻿# # Matjaž Jeran <matjaz.jeran@amis.net>, 2015.
+# # Slovenian translation by Matjaž Jeran"
 msgid ""
 msgstr ""
 "Project-Id-Version: RcmdrPlugin.KMggplot2 0.2-4\n"
