@@ -524,7 +524,7 @@ gkm <- setRefClass(
       if (parms$confIntB == "1") {
         geom <- paste0(
           geom,
-          "RcmdrPlugin.KMggplot2::geom_stepribbon(data = .fit, aes(x = x, ymin = lower, ymax = upper, fill = z), alpha = 0.25, colour = \"transparent\", show.legend = FALSE, kmplot = TRUE) + "
+          "RcmdrPlugin.KMggplot2::geom_stepribbon(data = .fit, aes(x = x, ymin = lower, ymax = upper, fill = z), alpha = 0.25, colour = NA, show.legend = FALSE, kmplot = TRUE) + "
         )
       }
       
