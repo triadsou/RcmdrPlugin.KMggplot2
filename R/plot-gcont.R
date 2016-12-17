@@ -246,19 +246,43 @@ gcont <- setRefClass(
       )
 
       if (parms$decoType == "2") {
-        scale <- paste0(
-          scale,
-          "scale_colour_gradient(",
-          "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
-          "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]) + "
-        )
+        if (parms$colour == "Default") {
+        } else if (parms$colour == "Hue") {
+          scale <- paste0(
+            scale,
+            "scale_colour_gradient(low = scale_color_hue()$palette(2)[1], high = scale_color_hue()$palette(2)[2]) + "
+          )
+        } else if (parms$colour == "Grey") {
+          scale <- paste0(
+            scale,
+            "scale_colour_gradient(low = scale_color_grey()$palette(2)[1], high = scale_color_grey()$palette(2)[2]) + "
+          )
+        } else {
+          scale <- paste0(
+            scale, "scale_colour_gradient(",
+            "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
+            "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]) + "
+          )
+        }
       } else if (parms$decoType == "3") {
-        scale <- paste0(
-          scale,
-          "scale_fill_gradient(",
-          "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
-          "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]) + "
-        )
+        if (parms$colour == "Default") {
+        } else if (parms$colour == "Hue") {
+          scale <- paste0(
+            scale,
+            "scale_fill_gradient(low = scale_color_hue()$palette(2)[1], high = scale_color_hue()$palette(2)[2]) + "
+          )
+        } else if (parms$colour == "Grey") {
+          scale <- paste0(
+            scale,
+            "scale_fill_gradient(low = scale_color_grey()$palette(2)[1], high = scale_color_grey()$palette(2)[2]) + "
+          )
+        } else {
+          scale <- paste0(
+            scale, "scale_fill_gradient(",
+            "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
+            "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]) + "
+          )
+        }
       }
       scale
       
@@ -289,7 +313,7 @@ gcont <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       if (parms$decoType != "1") {

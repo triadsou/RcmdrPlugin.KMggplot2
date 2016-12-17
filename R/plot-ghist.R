@@ -316,22 +316,52 @@ ghist <- setRefClass(
 
       if (parms$heatPlot == "1") {
         if (parms$axisScaling == "3") {
-          scale <- paste0(
-            scale,
-            "scale_fill_gradient(",
-              "low = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[2], ", 
+          if (parms$colour == "Default") {
+            scale <- paste0(
+              scale,
+              "scale_fill_continuous(labels = scales::percent_format()) + "
+            )
+          } else if (parms$colour == "Hue") {
+            scale <- paste0(
+              scale,
+              "scale_fill_gradient(low = scale_color_hue()$palette(2)[2], ",
+              "high = scale_color_hue()$palette(2)[1], labels = scales::percent_format()) + "
+            )
+          } else if (parms$colour == "Grey") {
+            scale <- paste0(
+              scale,
+              "scale_fill_gradient(low = scale_color_grey()$palette(2)[2], ",
+              "high = scale_color_grey()$palette(2)[1], labels = scales::percent_format()) + "
+            )
+          } else {
+            scale <- paste0(
+              scale, "scale_fill_gradient(",
+              "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
               "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1], ",
-              "labels = scales::percent_format()",
-            ") + "
-          )
+              "labels = scales::percent_format()) + "
+            )
+          }
         } else {
-          scale <- paste0(
-            scale,
-            "scale_fill_gradient(",
-              "low = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[2], ", 
-              "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]",
-            ") + "
-          )
+          if (parms$colour == "Default") {
+          } else if (parms$colour == "Hue") {
+            scale <- paste0(
+              scale,
+              "scale_fill_gradient(low = scale_color_hue()$palette(2)[2], ",
+              "high = scale_color_hue()$palette(2)[1]) + "
+            )
+          } else if (parms$colour == "Grey") {
+            scale <- paste0(
+              scale,
+              "scale_fill_gradient(low = scale_color_grey()$palette(2)[2], ",
+              "high = scale_color_grey()$palette(2)[1]) + "
+            )
+          } else {
+            scale <- paste0(
+              scale, "scale_fill_gradient(",
+              "low = RColorBrewer::brewer.pal(3, \"", parms$colour,  "\")[2], ",
+              "high = RColorBrewer::brewer.pal(3, \"", parms$colour, "\")[1]) + "
+            )
+          }
         }
       }
       scale
@@ -342,7 +372,7 @@ ghist <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       if (parms$heatPlot == "1") {

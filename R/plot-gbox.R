@@ -324,9 +324,25 @@ gbox <- setRefClass(
         scale <- "scale_x_discrete(breaks = NULL) + "
       } else if (length(parms$z) != 0) {
         if (parms$plotType == "1" || parms$plotType == "2" || parms$plotType == "3") {
-          scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          if (parms$colour == "Default") {
+            scale <- ""
+          } else if (parms$colour == "Hue") {
+            scale <- paste0("scale_fill_hue() + ")
+          } else if (parms$colour == "Grey") {
+            scale <- paste0("scale_fill_grey() + ")
+          } else {
+            scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          }
         } else {
-          scale <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+          if (parms$colour == "Default") {
+            scale <- ""
+          } else if (parms$colour == "Hue") {
+            scale <- paste0("scale_colour_hue() + ")
+          } else if (parms$colour == "Grey") {
+            scale <- paste0("scale_colour_grey() + ")
+          } else {
+            scale <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+          }
         }
       } else {
         scale <- ""
@@ -375,7 +391,7 @@ gbox <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       if (length(parms$x) == 0 && length(parms$z) == 0) {

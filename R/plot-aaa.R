@@ -226,7 +226,7 @@ plot_base <- setRefClass(
       if (class(rmlist) == "uninitializedField") {
         rmlist <<- list(txtObjects)
       } else {
-        rmlist <<- c(rmlist, txtObjects)
+        rmlist <<- unique(c(rmlist, txtObjects))
       }
       return()
 
@@ -358,22 +358,30 @@ plot_base <- setRefClass(
         theme <- "ggthemes::theme_fivethirtyeight"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
+      } else if (index == "theme_foundation") {
+        theme <- "ggthemes::theme_foundation"
       } else if (index == "theme_gdocs") {
         theme <- "ggthemes::theme_gdocs"
       } else if (index == "theme_hc") {
         theme <- "ggthemes::theme_hc"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
+      } else if (index == "theme_igray") {
+        theme <- "ggthemes::theme_igray"
+      } else if (index == "theme_map") {
+        theme <- "ggthemes::theme_map"
+      } else if (index == "theme_pander") {
+        theme <- "ggthemes::theme_pander"
       } else if (index == "theme_par") {
         theme <- "ggthemes::theme_par"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
-      } else if (index == "theme_pander") {
-        theme <- "ggthemes::theme_pander"
       } else if (index == "theme_solarized") {
         theme <- "ggthemes::theme_solarized"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
+      } else if (index == "theme_solid") {
+        theme <- "ggthemes::theme_solid"
       } else if (index == "theme_stata") {
         theme <- "ggthemes::theme_stata"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
@@ -384,8 +392,6 @@ plot_base <- setRefClass(
         theme <- "RcmdrPlugin.KMggplot2::theme_wsj2"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
-      } else if (index == "theme_igray") {
-        theme <- "ggthemes::theme_igray"
       } else {
         theme <- "theme_bw"
       }
@@ -540,7 +546,7 @@ plot_base <- setRefClass(
       
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = grid::unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = grid::unit(0.3, \"lines\")")
       }
 
       if (length(opts) != 0) {

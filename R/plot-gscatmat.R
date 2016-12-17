@@ -248,28 +248,52 @@ gscatmat <- setRefClass(
 
     getGeom = function(parms) {
 
+      if (length(parms$z) == 0) {
+        aes <- ""
+      } else if (parms$smoothType == "4") {
+        aes <- "aes(fill = z)"
+      } else {
+        aes <- "aes(fill = z), "
+      }
+      
       if (parms$smoothType == "1") {
         geom <-  ""
       } else if (parms$smoothType == "2") {
-        geom <-  "stat_smooth(method = \"lm\") + "
+        geom <- paste0("stat_smooth(", aes, "method = \"lm\") + ")
       } else if (parms$smoothType == "3") {
-        geom <-  "stat_smooth(method = \"lm\", se = FALSE) + "
+        geom <- paste0("stat_smooth(", aes, "method = \"lm\", se = FALSE) + ")
       } else if (parms$smoothType == "4") {
-        geom <-  "stat_smooth() + "
+        geom <- paste0("stat_smooth(", aes, ") + ")
       } else if (parms$smoothType == "5") {
-        geom <-  "stat_smooth(se = FALSE) + "
+        geom <- paste0("stat_smooth(", aes, "se = FALSE) + ")
       }
       geom
 
     },
+    
     getScale = function(parms) {
       
       scale <- "scale_y_continuous(expand = c(0.01, 0)) + "
       if (length(parms$z) != 0) {
-        scale <- paste0(
-          scale,
-          "scale_colour_brewer(palette = \"", parms$colour, "\") + "
-        )
+        if (parms$colour == "Default") {
+        } else if (parms$colour == "Hue") {
+          scale <- paste0(scale, "scale_colour_hue() + ")
+        } else if (parms$colour == "Grey") {
+          scale <- paste0(scale, "scale_colour_grey() + ")
+        } else {
+          scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        }
+        if (parms$smoothType != "1") {
+          if (parms$colour == "Default") {
+            scale <- ""
+          } else if (parms$colour == "Hue") {
+            scale <- paste0(scale, "scale_fill_hue() + ")
+          } else if (parms$colour == "Grey") {
+            scale <- paste0(scale, "scale_fill_grey() + ")
+          } else {
+            scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          }
+        }
       }
       scale
       
@@ -282,9 +306,17 @@ gscatmat <- setRefClass(
       } else if (nchar(parms$zlab) == 0) {
         zlab <- ""
       } else if (parms$zlab == "<auto>") {
-        zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\") + ")
+        if (parms$smoothType == "1") {
+          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\") + ")
+        } else {
+          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\", fill = \"", parms$z, "\") + ")
+        }
       } else {
-        zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\") + ")
+        if (parms$smoothType == "1") {
+          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\") + ")
+        } else {
+          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\", fill = \"", parms$zlab, "\") + ")
+        }
       }
       zlab
       
@@ -294,7 +326,7 @@ gscatmat <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       if (length(parms$z) != 0 && nchar(parms$zlab) == 0) {

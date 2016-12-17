@@ -88,7 +88,8 @@ toolbox <- setRefClass(
       
       if (showcolourbox) {
         brewercolours <- rownames(brewer.pal.info)
-        brewercolours <- c("Set1", brewercolours[brewercolours!="Set1"])
+        brewercolours <- c("Default", "Hue", "Grey", "Set1", "Blues",
+                           brewercolours[brewercolours!="Set1" & brewercolours!="Blues"])
         colour <<- variableListBox(
           parentWindow     = frame,
           variableList     = brewercolours,
@@ -115,9 +116,10 @@ toolbox <- setRefClass(
           "theme_linedraw", "theme_light", "theme_dark",
           "theme_base", "theme_calc", "theme_economist", 
           "theme_excel", "theme_few", "theme_fivethirtyeight", 
-          "theme_gdocs", "theme_hc", "theme_par",
-          "theme_pander", "theme_solarized", "theme_stata",
-          "theme_tufte", "theme_wsj2", "theme_igray"
+          "theme_foundation", "theme_gdocs", "theme_hc",
+          "theme_igray", "theme_map", "theme_pander", 
+          "theme_par", "theme_solarized", "theme_solid",
+          "theme_stata", "theme_tufte", "theme_wsj2"
         ),
         listHeight       = 5,
         selectmode       = "single",

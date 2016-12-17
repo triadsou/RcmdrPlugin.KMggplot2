@@ -239,10 +239,16 @@ gpie <- setRefClass(
 
     getScale = function(parms) {
 
-      paste0(
-        "scale_fill_brewer(palette = \"", parms$colour, "\") + ",
-        "scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + "
-      )
+      scale <- "scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + "
+      if (parms$colour == "Default") {
+      } else if (parms$colour == "Hue") {
+        scale <- paste0(scale, "scale_fill_hue() + ")
+      } else if (parms$colour == "Grey") {
+        scale <- paste0(scale, "scale_fill_grey() + ")
+      } else {
+        scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+      }
+      scale
 
     },
 
@@ -269,7 +275,7 @@ gpie <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       opts <- c(

@@ -579,14 +579,25 @@ gkm <- setRefClass(
       byLength <- signif((max(.fit$x) + nTick/2)/nTick, -round(log10(max(.fit$x)), 0))
       scale <- paste0(
         "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
-        "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + ",
-        "scale_colour_brewer(palette = \"", parms$colour, "\") + "
+        "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + "
       )
+      if (parms$colour == "Default") {
+      } else if (parms$colour == "Hue") {
+        scale <- paste0(scale, "scale_colour_hue() + ")
+      } else if (parms$colour == "Grey") {
+        scale <- paste0(scale, "scale_colour_grey() + ")
+      } else {
+        scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+      }
       if (parms$confIntB == "1") {
-        scale <- paste0(
-          scale,
-          "scale_fill_brewer(palette = \"", parms$colour, "\") + "
-        )
+        if (parms$colour == "Default") {
+        } else if (parms$colour == "Hue") {
+          scale <- paste0(scale, "scale_fill_hue() + ")
+        } else if (parms$colour == "Grey") {
+          scale <- paste0(scale, "scale_fill_grey() + ")
+        } else {
+          scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+        }
       }
       scale
       
@@ -609,7 +620,7 @@ gkm <- setRefClass(
 
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
 
       if (length(parms$z) == 0) {
@@ -619,7 +630,7 @@ gkm <- setRefClass(
           opts <- c(opts, "legend.title = element_blank()")
         }
         if (parms$plotType == "3") {
-          opts <- c(opts, "legend.position = c(1, 1)", "legend.justification = c(1, 1)")
+          opts <- c(opts, "legend.position = c(1, 1)", "legend.justification = c(1, 1)", "legend.background = element_rect(fill = \"transparent\")")
         } else {
           opts <- c(opts, "legend.position = \"right\"")
         }
@@ -709,23 +720,41 @@ gkm <- setRefClass(
         }
         commandDoIt(command)
         
+        if (parms$colour == "Default") {
+          command <- ""
+        } else if (parms$colour == "Hue") {
+          command <- paste0("scale_colour_hue() + ")
+        } else if (parms$colour == "Grey") {
+          command <- paste0("scale_colour_grey() + ")
+        } else {
+          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        }
         command <- paste0(
           ".plot2 <- ggplot(data = .nrisk, aes(x = x, y = y, label = Freq, colour = z)) + ",
           "geom_text(size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + ",
           "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
           "scale_y_continuous(limits = c(0, 1)) + ",
-          "scale_colour_brewer(palette = \"", parms$colour, "\") + ",
+          command,
           ylab,
           "RcmdrPlugin.KMggplot2::theme_natrisk(", parms$theme, ", ", parms$size, ", \"", parms$family, "\")"
         )
         commandDoIt(command)
 
+        if (parms$colour == "Default") {
+          command <- ""
+        } else if (parms$colour == "Hue") {
+          command <- paste0("scale_colour_hue() + ")
+        } else if (parms$colour == "Grey") {
+          command <- paste0("scale_colour_grey() + ")
+        } else {
+          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        }
         command <- paste0(
           ".plot3 <- ggplot(data = subset(.nrisk, x == 0), aes(x = x, y = y, label = z, colour = z)) + ",
           "geom_text(hjust = 0, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + ",
           "scale_x_continuous(limits = c(-5, 5)) + ",
           "scale_y_continuous(limits = c(0, 1)) + ",
-          "scale_colour_brewer(palette = \"", parms$colour, "\") + ",
+          command,
           "RcmdrPlugin.KMggplot2::theme_natrisk21(", parms$theme, ", ", parms$size, ", \"", parms$family, "\")"
         )
         commandDoIt(command)

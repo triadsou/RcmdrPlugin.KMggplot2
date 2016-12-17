@@ -55,17 +55,17 @@
 #' @keywords hplot
 #' @export gscat
 gscat <- setRefClass(
-
+  
   Class = "gscat",
-
+  
   fields = c("vbbox1", "vbbox2", "lbbox1", "rbbox1", "tbbox1"),
-
+  
   contains = c("plot_base"),
-
+  
   methods = list(
-
+    
     setFront = function() {
-
+      
       vbbox1 <<- variableboxes$new()
       vbbox1$front(
         top       = top, 
@@ -77,7 +77,7 @@ gscat <- setRefClass(
         ),
         initialSelection = list(0, 0, FALSE)
       )
-
+      
       vbbox2 <<- variableboxes$new()
       vbbox2$front(
         top       = top, 
@@ -87,7 +87,7 @@ gscat <- setRefClass(
           gettextKmg2("Facet variable in cols")
         )
       )
-
+      
       lbbox1 <<- textfields$new()
       lbbox1$front(
         top        = top,
@@ -99,7 +99,7 @@ gscat <- setRefClass(
           gettextKmg2("Title")
         )
       )
-
+      
       rbbox1 <<- radioboxes$new()
       rbbox1$front(
         top    = top,
@@ -112,22 +112,22 @@ gscat <- setRefClass(
         ),
         title  = gettextKmg2("Smoothing type")
       )
-
+      
       tbbox1 <<- toolbox$new()
       tbbox1$front(top)
-
+      
     },
-
+    
     setBack = function() {
-
+      
       vbbox1$back()
       vbbox2$back()
       lbbox1$back()
       rbbox1$back()
       tbbox1$back()
-
+      
     },
-
+    
     getWindowTitle = function() {
       
       gettextKmg2("Scatter plot")
@@ -139,29 +139,29 @@ gscat <- setRefClass(
       "stat_smooth"
       
     },
-
+    
     getParms = function() {
-
+      
       x      <- getSelection(vbbox1$variable[[1]])
       y      <- getSelection(vbbox1$variable[[2]])
       z      <- getSelection(vbbox1$variable[[3]])
-
+      
       s      <- getSelection(vbbox2$variable[[1]])
       t      <- getSelection(vbbox2$variable[[2]])
-
+      
       x      <- checkVariable(x)
       y      <- checkVariable(y)
       z      <- checkVariable(z)
       s      <- checkVariable(s)
       t      <- checkVariable(t)
-
+      
       xlab   <- tclvalue(lbbox1$fields[[1]]$value)
       xauto  <- x
       ylab   <- tclvalue(lbbox1$fields[[2]]$value)
       yauto  <- y
       zlab   <- tclvalue(lbbox1$fields[[3]]$value)
       main   <- tclvalue(lbbox1$fields[[4]]$value)
-
+      
       size   <- tclvalue(tbbox1$size$value)
       family <- getSelection(tbbox1$family)
       colour <- getSelection(tbbox1$colour)
@@ -177,18 +177,18 @@ gscat <- setRefClass(
       )
       
       smoothType   <- tclvalue(rbbox1$value)
-
+      
       list(
         x = x, y = y, z = z, s = s, t = t,
         xlab = xlab, xauto = xauto, ylab = ylab, yauto = yauto, zlab = zlab, main = main,
         size = size, family = family, colour = colour, save = save, theme = theme,
         smoothType = smoothType
       )
-
+      
     },
-
+    
     checkError = function(parms) {
-
+      
       if (length(parms$x) == 0) {
         errorCondition(
           recall  = windowScatter,
@@ -205,24 +205,24 @@ gscat <- setRefClass(
         errorCode <- FALSE
       }
       errorCode
-
+      
     },
-
+    
     getGgplot = function(parms) {
-
+      
       if (length(parms$z) == 0) {
         ggplot <-  "ggplot(data = .df, aes(x = x, y = y)) + "
       } else {
         ggplot <-  "ggplot(data = .df, aes(x = x, y = y, colour = z, shape = z)) + "
       }
       ggplot
-
+      
     },
-
+    
     getGeom = function(parms) {
-
+      
       geom <- "geom_point() + "
-
+      
       if (length(parms$z) == 0) {
         aes <- ""
       } else if (parms$smoothType == "4") {
@@ -230,7 +230,7 @@ gscat <- setRefClass(
       } else {
         aes <- "aes(fill = z), "
       }
-
+      
       if (parms$smoothType == "2") {
         geom <- paste0(
           geom,
@@ -253,24 +253,39 @@ gscat <- setRefClass(
         )
       }
       geom
-
+      
     },
-
+    
     getScale = function(parms) {
       
       scale <- "scale_y_continuous(expand = c(0.01, 0)) + "
       if (length(parms$z) != 0) {
-        scale <- paste0(
-          scale,
-          "scale_colour_brewer(palette = \"", parms$colour, "\") + "
-        )
+        if (parms$colour == "Default") {
+        } else if (parms$colour == "Hue") {
+          scale <- paste0(scale, "scale_colour_hue() + ")
+        } else if (parms$colour == "Grey") {
+          scale <- paste0(scale, "scale_colour_grey() + ")
+        } else {
+          scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        }
+        if (parms$smoothType != "1") {
+          if (parms$colour == "Default") {
+            scale <- ""
+          } else if (parms$colour == "Hue") {
+            scale <- paste0(scale, "scale_fill_hue() + ")
+          } else if (parms$colour == "Grey") {
+            scale <- paste0(scale, "scale_fill_grey() + ")
+          } else {
+            scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          }
+        }
       }
       scale
       
     },
-
+    
     getZlab = function(parms) {
-
+      
       if (length(parms$z) == 0) {
         zlab <- ""
       } else if (nchar(parms$zlab) == 0) {
@@ -289,22 +304,22 @@ gscat <- setRefClass(
         }
       }
       zlab
-
+      
     },
-
+    
     getOpts = function(parms) {
-
+      
       opts <- list()
       if (length(parms$s) != 0 || length(parms$t) != 0) {
-        opts <- c(opts, "panel.margin = unit(0.3, \"lines\")")
+        opts <- c(opts, "panel.spacing = unit(0.3, \"lines\")")
       }
-
+      
       if (length(parms$z) != 0 && nchar(parms$zlab) == 0) {
         opts <- c(opts, "legend.position = \"right\"", "legend.title = element_blank()")
       } else if (length(parms$z) != 0 && nchar(parms$zlab) != 0) {
         opts <- c(opts, "legend.position = \"right\"")
       }
-
+      
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
         opts <- paste0(" + theme(", opts, ")")
@@ -312,15 +327,15 @@ gscat <- setRefClass(
         opts <- ""
       }
       opts
-
+      
     },
-
+    
     getMessage = function() {
-
+      
       gettextKmg2("Smoothing failed.  Please try another smoothing type, or check the data and variables.")
-
+      
     }
-
+    
   )
 )
 
@@ -334,8 +349,8 @@ gscat <- setRefClass(
 #' @keywords hplot
 #' @export
 windowScatter <- function() {
-
+  
   Scatter <- RcmdrPlugin.KMggplot2::gscat$new()
   Scatter$plotWindow()
-
+  
 }
