@@ -2,7 +2,7 @@
 # RcmdrPlugin.KMggplot2 package
 
 
-## An Rcmdr Plug-in for Kaplan-Meier Plots and Other Plots by Using the ggplot2 Package
+## Rcmdr Plug-in for Data Visualization with 'ggplot2'
 
 A GUI front-end for ggplot2 allows Kaplan-Meier plot, histogram, Q-Q plot, box plot, errorbar plot, scatter plot, line chart, pie chart, bar chart, contour plot, and distribution plot.
 
