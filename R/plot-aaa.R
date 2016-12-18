@@ -368,8 +368,6 @@ plot_base <- setRefClass(
         registRmlist(ggthemes_data)
       } else if (index == "theme_igray") {
         theme <- "ggthemes::theme_igray"
-      } else if (index == "theme_map") {
-        theme <- "ggthemes::theme_map"
       } else if (index == "theme_pander") {
         theme <- "ggthemes::theme_pander"
       } else if (index == "theme_par") {
@@ -380,8 +378,6 @@ plot_base <- setRefClass(
         theme <- "ggthemes::theme_solarized"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")
         registRmlist(ggthemes_data)
-      } else if (index == "theme_solid") {
-        theme <- "ggthemes::theme_solid"
       } else if (index == "theme_stata") {
         theme <- "ggthemes::theme_stata"
         commandDoIt("ggthemes_data <- ggthemes::ggthemes_data")

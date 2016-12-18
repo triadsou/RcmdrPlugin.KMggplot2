@@ -117,9 +117,9 @@ toolbox <- setRefClass(
           "theme_base", "theme_calc", "theme_economist", 
           "theme_excel", "theme_few", "theme_fivethirtyeight", 
           "theme_foundation", "theme_gdocs", "theme_hc",
-          "theme_igray", "theme_map", "theme_pander", 
-          "theme_par", "theme_solarized", "theme_solid",
-          "theme_stata", "theme_tufte", "theme_wsj2"
+          "theme_igray", "theme_pander", "theme_par",
+          "theme_solarized", "theme_stata", "theme_tufte",
+          "theme_wsj2"
         ),
         listHeight       = 5,
         selectmode       = "single",
