@@ -76,7 +76,10 @@ toolbox <- setRefClass(
       } else {
         osfontsname <- names(postscriptFonts())
       }
-
+      tmpf <- osfontsname[2]
+      osfontsname[2] <- osfontsname[1]
+      osfontsname[1] <- tmpf
+      
       family <<- variableListBox(
         parentWindow     = frame,
         variableList     = osfontsname,
