@@ -259,7 +259,7 @@ ghist <- setRefClass(
         var <- c(var, paste0("t = ", ActiveDataSet(), "$", parms$t))
       }
       command <- do.call(paste, c(var, list(sep = ", ")))
-      command <- paste0(".df <- data.frame(", command, ")")
+      command <- paste0(".df <- na.omit(data.frame(", command, "))")
 
       commandDoIt(command)
       registRmlist(.df)
