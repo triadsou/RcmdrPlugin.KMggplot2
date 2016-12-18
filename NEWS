@@ -2,9 +2,17 @@
 # RcmdrPlugin.KMggplot2 package
 
 
+## Changes in version 0.2-4 (2016-12-30)
+
+* ggplot2 2.2.0 was supported.
+* Added ggplot2's colour/fill scales (scale_*_hue, scale_*_grey).
+* Fixed a bug: Histogram with missing values (Thanks to Dr. José G. Conde).
+* Fixed a bug: Boxplot with an inappropriate jitter position (Thanks to Dr. M. Felix Freshwater).
+
+
 ## Changes in version 0.2-3 (2015-12-30)
 
-* New geom_stepribbon
+* New geom_stepribbon.
 * Pointwise confidence intervals of Kaplan-Meier plots with band (Thanks to Dr. M. Felix Freshwater).
 * Notched box plots (Thanks to Dr. M. Felix Freshwater).
 * Stratified (colored) box plots (Thanks to Dr. M. Felix Freshwater).
@@ -91,7 +99,7 @@
 * Scatter plot matrix: Smoothing with LOESS for small datasets or GAM with a cubic regression basis for large data.
 * Line chart: Normal line chart.
 * Line chart: Line char with a step function.
-*  Line chart: Area plot.
+* Line chart: Area plot.
 * Pie chart: Pie chart.
 * Bar chart for discrete variables: Bar chart for discrete variables.
 * Contour plot: Color coding.
