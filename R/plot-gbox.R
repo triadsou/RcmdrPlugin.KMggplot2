@@ -309,10 +309,17 @@ gbox <- setRefClass(
       }
 
       if (parms$addJitter == "1") {
-        geom <- paste0(
-          geom,
-          "geom_jitter(colour = \"black\", position = position_jitterdodge(jitter.width = 0.25, jitter.height = 0, dodge.width = 0.9)) + "
-        )
+        if (length(parms$x) != 0 && length(parms$z) != 0) {
+          geom <- paste0(
+            geom,
+            "geom_jitter(colour = \"black\", position = position_jitterdodge(jitter.width = 0.25, jitter.height = 0, dodge.width = 0.9)) + "
+          )
+        } else {
+          geom <- paste0(
+            geom,
+            "geom_jitter(colour = \"black\", width = 0.1, height = 0) + "
+          )
+        }
       }
       geom
 
