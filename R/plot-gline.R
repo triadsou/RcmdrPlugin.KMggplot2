@@ -326,9 +326,25 @@ gline <- setRefClass(
       if (length(parms$z) == 0) {
         scale <- ""
       } else if (any(parms$plotType == c("1", "2"))) {
-        scale <- paste("scale_colour_brewer(palette = \"", parms$colour, "\") + ", sep="")
+        if (parms$colour == "Default") {
+          scale <- ""
+        } else if (parms$colour == "Hue") {
+          scale <- paste0("scale_colour_hue() + ")
+        } else if (parms$colour == "Grey") {
+          scale <- paste0("scale_colour_grey() + ")
+        } else {
+          scale <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        }
       } else {
-        scale <- paste("scale_fill_brewer(palette = \"", parms$colour, "\") + ", sep="")
+        if (parms$colour == "Default") {
+          scale <- ""
+        } else if (parms$colour == "Hue") {
+          scale <- paste0("scale_fill_hue() + ")
+        } else if (parms$colour == "Grey") {
+          scale <- paste0("scale_fill_grey() + ")
+        } else {
+          scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+        }
       }
 
       if (parms$scaleType == "2") {
