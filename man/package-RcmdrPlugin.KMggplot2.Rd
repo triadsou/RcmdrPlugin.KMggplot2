@@ -5,9 +5,11 @@
 \alias{KMggplot2}
 \alias{RcmdrPlugin.KMggplot2}
 \alias{RcmdrPlugin.KMggplot2-package}
-\title{Rcmdr Plug-In for Kaplan-Meier Plot and Other Plots by Using the ggplot2 Package}
+\title{Rcmdr Plug-in for Data Visualization with 'ggplot2'}
 \description{
-This package is an R Commander plug-in for Kaplan-Meier plots and other plots by using the ggplot2 package in GUI interface.
+A GUI front-end for 'ggplot2' allows Kaplan-Meier plot, histogram,
+Q-Q plot, box plot, errorbar plot, scatter plot, line chart, pie chart,
+bar chart, contour plot, and distribution plot.
 }
 \author{
 Author: Triad sou. and Kengo NAGASHIMA
