@@ -632,7 +632,7 @@ NULL
 #'
 #' \code{savePlot} method saves the plot.
 #'
-#' @usage \S4method{savePlot}{plot_base}(plot)
+#' @usage \S4method{savePlot}{plot_base}(plot, useGgsave)
 #' @param plot \code{ggplot} or \code{recordedplot} class object; the plot to save.
 #' @param useGgsave Boolean; use \code{ggsave}.
 #' @family plot
@@ -1102,9 +1102,9 @@ NULL
 #'
 #' \code{commandDoIt} method gets the plot error message.
 #'
-#' @usage \S4method{commandDoIt}{plot_base}(command)
+#' @usage \S4method{commandDoIt}{plot_base}(command, log)
 #' @param command String; command codes.
-#' @param log Boolean; use \cdoe{logger}.
+#' @param log Boolean; use \code{logger}.
 #' @family plot
 #'
 #' @name commandDoIt,plot_base-method

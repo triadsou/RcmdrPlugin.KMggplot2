@@ -5,7 +5,7 @@
 \alias{savePlot,plot_base-method}
 \title{Save Plot}
 \usage{
-\S4method{savePlot}{plot_base}(plot)
+\S4method{savePlot}{plot_base}(plot, useGgsave)
 }
 \arguments{
 \item{plot}{\code{ggplot} or \code{recordedplot} class object; the plot to save.}
