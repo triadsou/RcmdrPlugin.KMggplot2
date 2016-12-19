@@ -59,7 +59,7 @@ gbox <- setRefClass(
 
   Class = "gbox",
 
-  fields = c("vbbox1", "vbbox2", "lbbox1", "rbbox1", "cbbox1", "tbbox1"),
+  fields = c("vbbox1", "vbbox2", "lbbox1", "rbbox1", "rbbox2", "cbbox1", "tbbox1"),
 
   contains = c("plot_base"),
 
@@ -117,14 +117,24 @@ gbox <- setRefClass(
       cbbox1 <<- checkboxes$new()
       cbbox1$front(
         top        = alternateFrame,
-        initValues = list("0", "0"),
+        initValues = list("0"),
         labels     = list(
-          gettextKmg2("Flipped coordinates"),
-          gettextKmg2("Add data point")
+          gettextKmg2("Flipped coordinates")
         ),
         title      = gettextKmg2("Options")
       )
-
+      
+      rbbox2 <<- radioboxes$new()
+      rbbox2$front(
+        top    = alternateFrame,
+        labels = list(
+          gettextKmg2("None"),
+          gettextKmg2("Jitter"),
+          gettextKmg2("Beeswarm")
+        ),
+        title  = gettextKmg2("Add data point")
+      )
+      
       tbbox1 <<- toolbox$new()
       tbbox1$front(top)
 
@@ -139,7 +149,10 @@ gbox <- setRefClass(
       tkgrid(
         rbbox1$frame,
         labelRcmdr(alternateFrame, text="    "),
-        cbbox1$frame, stick="nw")
+        cbbox1$frame,
+        labelRcmdr(alternateFrame, text="    "),
+        rbbox2$frame,
+        stick="nw")
       tkgrid(alternateFrame, stick="nw")
       tkgrid(labelRcmdr(alternateFrame, text="    "), stick="nw")
 
@@ -203,13 +216,13 @@ gbox <- setRefClass(
 
       plotType          <- tclvalue(rbbox1$value)
       flipedCoordinates <- tclvalue(cbbox1$value[[1]])
-      addJitter         <- tclvalue(cbbox1$value[[2]])
+      dataPoint         <- tclvalue(rbbox2$value)
 
       list(
         x = x, y = y, z = z, s = s, t = t,
         xlab = xlab, xauto = xauto, ylab = ylab, yauto = yauto, zlab = zlab, main = main,
         size = size, family = family, colour = colour, save = save, theme = theme,
-        plotType = plotType, flipedCoordinates = flipedCoordinates, addJitter = addJitter
+        plotType = plotType, flipedCoordinates = flipedCoordinates, dataPoint = dataPoint
       )
 
     },
@@ -238,18 +251,18 @@ gbox <- setRefClass(
       }
 
       if (length(parms$x) == 0 && length(parms$z) == 0) {
-        ggplot <- "ggplot(data = .df, aes(x = factor(1), y = y)) + "
+        ggplot <- "ggplot(data = .df, aes(x = factor(1), y = y)) + \n  "
       } else if (length(parms$x) == 0) {
-        ggplot <- paste0("ggplot(data = .df, aes(x = z, y = y, ", ztype, " = z)) + ")
+        ggplot <- paste0("ggplot(data = .df, aes(x = z, y = y, ", ztype, " = z)) + \n  ")
       } else if (length(parms$z) == 0) {
-        ggplot <- "ggplot(data = .df, aes(x = factor(x), y = y)) + "
+        ggplot <- "ggplot(data = .df, aes(x = factor(x), y = y)) + \n  "
       } else {
         if (parms$plotType == "1" || parms$plotType == "2" || parms$plotType == "3") {
-          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z)) + ")
-        } else if (parms$addJitter == "1") {
-          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z, fill = z)) + ")
+          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z)) + \n  ")
+        } else if (parms$dataPoint != "1") {
+          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z, fill = z)) + \n  ")
         } else {
-          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z)) + ")
+          ggplot <- paste0("ggplot(data = .df, aes(x = factor(x), y = y, ", ztype, " = z)) + \n  ")
         }
       }
       ggplot
@@ -266,60 +279,66 @@ gbox <- setRefClass(
       }
 
       if (parms$plotType == "1") {
-        if (parms$addJitter == "1") {
+        if (parms$dataPoint == "1") {
           geom <- paste0(
-            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + ",
-            "geom_boxplot(", dodge1, "outlier.colour = \"transparent\") + "
+            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + \n  ",
+            "geom_boxplot(", dodge2, ") + \n  "
           )
         } else {
           geom <- paste0(
-            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + ",
-            "geom_boxplot(", dodge2, ") + "
+            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + \n  ",
+            "geom_boxplot(", dodge1, "outlier.colour = \"transparent\") + \n  "
           )
         }
       } else if (parms$plotType == "2") {
-        if (parms$addJitter == "1") {
+        if (parms$dataPoint == "1") {
           geom <- paste0(
-            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + ",
-            "geom_boxplot(", dodge1, "outlier.colour = \"transparent\", notch = TRUE) + "
+            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + \n  ",
+            "geom_boxplot(", dodge1, "notch = TRUE) + \n  "
           )
         } else {
           geom <- paste0(
-            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + ",
-            "geom_boxplot(", dodge1, "notch = TRUE) + "
+            "stat_boxplot(geom = \"errorbar\", ", dodge1, "width = 0.5) + \n  ",
+            "geom_boxplot(", dodge1, "outlier.colour = \"transparent\", notch = TRUE) + \n  "
           )
         }
       } else if (parms$plotType == "3") {
         geom <- paste0(
-          "geom_violin(", dodge2, ") + ",
-          "stat_summary(fun.y = \"median\", geom = \"point\", ", dodge1, "pch = 10, size = 4) + "
+          "geom_violin(", dodge2, ") + \n  ",
+          "stat_summary(fun.y = \"median\", geom = \"point\", ", dodge1, "pch = 10, size = 4) + \n  "
         )
       } else if (parms$plotType == "4") {
         geom <- paste0(
-          "stat_summary(fun.y = \"mean\", geom = \"point\", ", dodge2, ") + ",  
+          "stat_summary(fun.y = \"mean\", geom = \"point\", ", dodge2, ") + \n  ",  
           "stat_summary(fun.data = \"mean_cl_normal\", geom = \"errorbar\", ",
-            dodge1, "width = 0.1, fun.args = list(conf.int = 0.95)) + "
+            dodge1, "width = 0.1, fun.args = list(conf.int = 0.95)) + \n  "
         )
       } else if (parms$plotType == "5") {
         geom <- paste(
-          "stat_summary(fun.y = \"mean\", geom = \"point\", ", dodge2, ") + ",  
+          "stat_summary(fun.y = \"mean\", geom = \"point\", ", dodge2, ") + \n  ",  
           "stat_summary(fun.data = \"mean_cl_boot\", geom = \"errorbar\", ",
-            dodge1, "width = 0.1, fun.args = list(conf.int = 0.95)) + "
+            dodge1, "width = 0.1, fun.args = list(conf.int = 0.95)) + \n  "
         )
       }
 
-      if (parms$addJitter == "1") {
+      if (parms$dataPoint == "1") {
+      } else if (parms$dataPoint == "2") {
         if (length(parms$x) != 0 && length(parms$z) != 0) {
           geom <- paste0(
             geom,
-            "geom_jitter(colour = \"black\", position = position_jitterdodge(jitter.width = 0.25, jitter.height = 0, dodge.width = 0.9)) + "
+            "geom_jitter(colour = \"black\", position = position_jitterdodge(jitter.width = 0.25, jitter.height = 0, dodge.width = 0.9)) + \n  "
           )
         } else {
           geom <- paste0(
             geom,
-            "geom_jitter(colour = \"black\", width = 0.1, height = 0) + "
+            "geom_jitter(colour = \"black\", width = 0.1, height = 0) + \n  "
           )
         }
+      } else if (parms$dataPoint == "3") {
+        geom <- paste0(
+          geom,
+          "geom_dotplot(binaxis = \"y\", stackdir = \"center\", position = position_dodge(width = 0.9), binwidth = 0.75) + \n  "
+        )
       }
       geom
 
@@ -328,27 +347,27 @@ gbox <- setRefClass(
     getScale = function(parms) {
       
       if (length(parms$x) == 0 && length(parms$z) == 0) {
-        scale <- "scale_x_discrete(breaks = NULL) + "
+        scale <- "scale_x_discrete(breaks = NULL) + \n  "
       } else if (length(parms$z) != 0) {
         if (parms$plotType == "1" || parms$plotType == "2" || parms$plotType == "3") {
           if (parms$colour == "Default") {
             scale <- ""
           } else if (parms$colour == "Hue") {
-            scale <- paste0("scale_fill_hue() + ")
+            scale <- paste0("scale_fill_hue() + \n  ")
           } else if (parms$colour == "Grey") {
-            scale <- paste0("scale_fill_grey() + ")
+            scale <- paste0("scale_fill_grey() + \n  ")
           } else {
-            scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+            scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + \n  ")
           }
         } else {
           if (parms$colour == "Default") {
             scale <- ""
           } else if (parms$colour == "Hue") {
-            scale <- paste0("scale_colour_hue() + ")
+            scale <- paste0("scale_colour_hue() + \n  ")
           } else if (parms$colour == "Grey") {
-            scale <- paste0("scale_colour_grey() + ")
+            scale <- paste0("scale_colour_grey() + \n  ")
           } else {
-            scale <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+            scale <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + \n  ")
           }
         }
       } else {
@@ -361,7 +380,7 @@ gbox <- setRefClass(
     getCoord = function(parms) {
       
       if (parms$flipedCoordinates == "1") {
-        coord <- "coord_flip() + "
+        coord <- "coord_flip() + \n  "
       } else {
         coord <- ""
       }
@@ -375,19 +394,19 @@ gbox <- setRefClass(
         zlab <- ""
       } else if (parms$zlab == "<auto>") {
         if (parms$plotType == "1" || parms$plotType == "2" || parms$plotType == "3") {
-          zlab <- paste0("labs(fill = \"", parms$z, "\") + ")
-        } else if (parms$addJitter == "1") {
-          zlab <- paste0("labs(fill = \"", parms$z, "\", colour = \"", parms$z, "\") + ")
+          zlab <- paste0("labs(fill = \"", parms$z, "\") + \n  ")
+        } else if (parms$dataPoint != "1") {
+          zlab <- paste0("labs(fill = \"", parms$z, "\", colour = \"", parms$z, "\") + \n  ")
         } else {
-          zlab <- paste0("labs(colour = \"", parms$z, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$z, "\") + \n  ")
         }
       } else {
         if (parms$plotType == "1" || parms$plotType == "2" || parms$plotType == "3") {
-          zlab <- paste0("labs(fill = \"", parms$zlab, "\") + ")
-        } else if (parms$addJitter == "1") {
-          zlab <- paste0("labs(fill = \"", parms$zlab, "\", colour = \"", parms$zlab, "\") + ")
+          zlab <- paste0("labs(fill = \"", parms$zlab, "\") + \n  ")
+        } else if (parms$dataPoint != "1") {
+          zlab <- paste0("labs(fill = \"", parms$zlab, "\", colour = \"", parms$zlab, "\") + \n  ")
         } else {
-          zlab <- paste0("labs(colour = \"", parms$zlab, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$zlab, "\") + \n  ")
         }
       }
       zlab
@@ -411,7 +430,7 @@ gbox <- setRefClass(
 
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
-        opts <- paste0(" + theme(", opts, ")")
+        opts <- paste0(" + \n  theme(", opts, ")")
       } else {
         opts <- ""
       }
