@@ -115,7 +115,7 @@ toolbox <- setRefClass(
         parentWindow     = frame,
         variableList     = c(
           "theme_bw", "theme_simple", "theme_classic",
-          "theme_gray", "theme_minimal",
+          "theme_grey", "theme_minimal",
           "theme_linedraw", "theme_light", "theme_dark",
           "theme_base", "theme_calc", "theme_economist", 
           "theme_excel", "theme_few", "theme_fivethirtyeight", 

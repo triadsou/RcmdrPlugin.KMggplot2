@@ -327,8 +327,8 @@ plot_base <- setRefClass(
         theme <- "RcmdrPlugin.KMggplot2::theme_simple"
       } else if (index == "theme_classic") {
         theme <- "theme_classic"
-      } else if (index == "theme_gray") {
-        theme <- "theme_gray"
+      } else if (index == "theme_grey") {
+        theme <- "theme_grey"
       } else if (index == "theme_minimal") {
         theme <- "theme_minimal"
       } else if (index == "theme_linedraw") {
