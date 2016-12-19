@@ -229,17 +229,17 @@ gscatmat <- setRefClass(
 
       if (length(parms$z) == 0) {
         ggplot <- paste0(
-          "ggplot(.all, aes(x = x, y = y)) + ",
-          "facet_grid(xvar ~ yvar, scales = \"free\") + ",
-          "geom_point() + ",
-          "geom_line(aes(x = x, y = y), data = .densities) + "
+          "ggplot(.all, aes(x = x, y = y)) + \n  ",
+          "facet_grid(xvar ~ yvar, scales = \"free\") + \n  ",
+          "geom_point() + \n  ",
+          "geom_line(aes(x = x, y = y), data = .densities) + \n  "
         )
       } else {
         ggplot <- paste0(
-          "ggplot(.all, aes(x = x, y = y, colour = z, shape = z)) + ",
-          "facet_grid(xvar ~ yvar, scales = \"free\") + ",
-          "geom_point() + ",
-          "geom_line(aes(x = x, y = y), data = .densities, colour = \"black\") + "
+          "ggplot(.all, aes(x = x, y = y, colour = z, shape = z)) + \n  ",
+          "facet_grid(xvar ~ yvar, scales = \"free\") + \n  ",
+          "geom_point() + \n  ",
+          "geom_line(aes(x = x, y = y), data = .densities, colour = \"black\") + \n  "
         )
       }
       ggplot
@@ -259,13 +259,13 @@ gscatmat <- setRefClass(
       if (parms$smoothType == "1") {
         geom <-  ""
       } else if (parms$smoothType == "2") {
-        geom <- paste0("stat_smooth(", aes, "method = \"lm\") + ")
+        geom <- paste0("stat_smooth(", aes, "method = \"lm\") + \n  ")
       } else if (parms$smoothType == "3") {
-        geom <- paste0("stat_smooth(", aes, "method = \"lm\", se = FALSE) + ")
+        geom <- paste0("stat_smooth(", aes, "method = \"lm\", se = FALSE) + \n  ")
       } else if (parms$smoothType == "4") {
-        geom <- paste0("stat_smooth(", aes, ") + ")
+        geom <- paste0("stat_smooth(", aes, ") + \n  ")
       } else if (parms$smoothType == "5") {
-        geom <- paste0("stat_smooth(", aes, "se = FALSE) + ")
+        geom <- paste0("stat_smooth(", aes, "se = FALSE) + \n  ")
       }
       geom
 
@@ -273,25 +273,25 @@ gscatmat <- setRefClass(
     
     getScale = function(parms) {
       
-      scale <- "scale_y_continuous(expand = c(0.01, 0)) + "
+      scale <- "scale_y_continuous(expand = c(0.01, 0)) + \n  "
       if (length(parms$z) != 0) {
         if (parms$colour == "Default") {
         } else if (parms$colour == "Hue") {
-          scale <- paste0(scale, "scale_colour_hue() + ")
+          scale <- paste0(scale, "scale_colour_hue() + \n  ")
         } else if (parms$colour == "Grey") {
-          scale <- paste0(scale, "scale_colour_grey() + ")
+          scale <- paste0(scale, "scale_colour_grey() + \n  ")
         } else {
-          scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+          scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + \n  ")
         }
         if (parms$smoothType != "1") {
           if (parms$colour == "Default") {
             scale <- ""
           } else if (parms$colour == "Hue") {
-            scale <- paste0(scale, "scale_fill_hue() + ")
+            scale <- paste0(scale, "scale_fill_hue() + \n  ")
           } else if (parms$colour == "Grey") {
-            scale <- paste0(scale, "scale_fill_grey() + ")
+            scale <- paste0(scale, "scale_fill_grey() + \n  ")
           } else {
-            scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+            scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + \n  ")
           }
         }
       }
@@ -307,15 +307,15 @@ gscatmat <- setRefClass(
         zlab <- ""
       } else if (parms$zlab == "<auto>") {
         if (parms$smoothType == "1") {
-          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\") + \n  ")
         } else {
-          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\", fill = \"", parms$z, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$z, "\", shape = \"", parms$z, "\", fill = \"", parms$z, "\") + \n  ")
         }
       } else {
         if (parms$smoothType == "1") {
-          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\") + \n  ")
         } else {
-          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\", fill = \"", parms$zlab, "\") + ")
+          zlab <- paste0("labs(colour = \"", parms$zlab, "\", shape = \"", parms$zlab, "\", fill = \"", parms$zlab, "\") + \n  ")
         }
       }
       zlab
@@ -337,7 +337,7 @@ gscatmat <- setRefClass(
       
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
-        opts <- paste0(" + theme(", opts, ")")
+        opts <- paste0(" + \n  theme(", opts, ")")
       } else {
         opts <- ""
       }

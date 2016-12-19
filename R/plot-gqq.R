@@ -203,7 +203,7 @@ gqq <- setRefClass(
       } else {
 
         if (mode == 1) {
-          logger("require(\"ggplot2\")")
+          commandDoIt("require(\"ggplot2\")", log = TRUE)
         }
 
         setDataframe(parms)
@@ -340,7 +340,7 @@ gqq <- setRefClass(
 
     getGgplot = function(parms) {
 
-      "ggplot(data = .df, aes(sample = y)) + "
+      "ggplot(data = .df, aes(sample = y)) + \n  "
 
     },
 
@@ -362,7 +362,7 @@ gqq <- setRefClass(
         distParms <- parms$distParms
       }
 
-      paste0("stat_qq(", distParms, ") + ")
+      paste0("stat_qq(", distParms, ") + \n  ")
 
     },
 
@@ -401,9 +401,9 @@ gqq <- setRefClass(
         } else {
           main <- paste0("Theoretical: ", parms$distParms)
         }
-        main <- paste0("labs(title = \"", main, "\") + ")
+        main <- paste0("labs(title = \"", main, "\") + \n  ")
       } else {
-        main <- paste0("labs(title = \"", parms$main, "\") + ")
+        main <- paste0("labs(title = \"", parms$main, "\") + \n  ")
       }
       main
 

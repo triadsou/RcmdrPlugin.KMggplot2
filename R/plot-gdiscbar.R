@@ -256,9 +256,9 @@ gdiscbar <- setRefClass(
     getGgplot = function(parms) {
 
       if (length(parms$z) != 0) {
-        ggplot <- "ggplot(data = .df, aes(x = x, y = Freq, fill = z)) + "
+        ggplot <- "ggplot(data = .df, aes(x = x, y = Freq, fill = z)) + \n  "
       } else {
-        ggplot <- "ggplot(data = .df, aes(x = x, y = Freq)) + "
+        ggplot <- "ggplot(data = .df, aes(x = x, y = Freq)) + \n  "
       }
       ggplot
 
@@ -268,12 +268,12 @@ gdiscbar <- setRefClass(
 
       if (length(parms$z) != 0) {
         if (parms$axisScaling == "1") {
-          geom <- "geom_bar(width = 0.9, position = \"fill\", stat = \"identity\") + "
+          geom <- "geom_bar(width = 0.9, position = \"fill\", stat = \"identity\") + \n  "
         } else {
-          geom <- "geom_bar(width = 0.9, position = \"stack\", stat = \"identity\") + "
+          geom <- "geom_bar(width = 0.9, position = \"stack\", stat = \"identity\") + \n  "
         }
       } else {
-        geom <- "geom_bar(width = 0.9, stat = \"identity\") + "
+        geom <- "geom_bar(width = 0.9, stat = \"identity\") + \n  "
       }
       geom
 
@@ -285,11 +285,11 @@ gdiscbar <- setRefClass(
         if (parms$colour == "Default") {
           scale <- ""
         } else if (parms$colour == "Hue") {
-          scale <- paste0("scale_fill_hue() + ")
+          scale <- paste0("scale_fill_hue() + \n  ")
         } else if (parms$colour == "Grey") {
-          scale <- paste0("scale_fill_grey() + ")
+          scale <- paste0("scale_fill_grey() + \n  ")
         } else {
-          scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          scale <- paste0("scale_fill_brewer(palette = \"", parms$colour, "\") + \n  ")
         }
       } else {
         scale <- ""
@@ -298,12 +298,12 @@ gdiscbar <- setRefClass(
       if (parms$axisScaling == "1") {
         scale <- paste0(
           scale,
-          "scale_y_continuous(expand = c(0.01, 0), labels = scales::percent_format()) + "
+          "scale_y_continuous(expand = c(0.01, 0), labels = scales::percent_format()) + \n  "
         )
       } else {
         scale <- paste0(
           scale,
-          "scale_y_continuous(expand = c(0.01, 0)) + "
+          "scale_y_continuous(expand = c(0.01, 0)) + \n  "
         )
       }
       scale
@@ -317,9 +317,9 @@ gdiscbar <- setRefClass(
       } else if (nchar(parms$zlab) == 0) {
         zlab <- ""
       } else if (parms$zlab == "<auto>") {
-        zlab <- paste0("labs(fill = \"", parms$z, "\") + ")
+        zlab <- paste0("labs(fill = \"", parms$z, "\") + \n  ")
       } else {
-        zlab <- paste0("labs(fill = \"", parms$zlab, "\") + ")
+        zlab <- paste0("labs(fill = \"", parms$zlab, "\") + \n  ")
       }
       zlab
 
@@ -340,7 +340,7 @@ gdiscbar <- setRefClass(
 
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
-        opts <- paste0(" + theme(", opts, ")")
+        opts <- paste0(" + \n  theme(", opts, ")")
       } else {
         opts <- ""
       }

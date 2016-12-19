@@ -227,26 +227,26 @@ gpie <- setRefClass(
 
     getGgplot = function(parms) {
 
-      "ggplot(data = .df, aes(x = factor(1), y = Freq, fill = y)) + "
+      "ggplot(data = .df, aes(x = factor(1), y = Freq, fill = y)) + \n  "
 
     },
 
     getGeom = function(parms) {
 
-      "geom_bar(width = 1, stat = \"identity\") + "
+      "geom_bar(width = 1, stat = \"identity\") + \n  "
 
     },
 
     getScale = function(parms) {
 
-      scale <- "scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + "
+      scale <- "scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + \n  "
       if (parms$colour == "Default") {
       } else if (parms$colour == "Hue") {
-        scale <- paste0(scale, "scale_fill_hue() + ")
+        scale <- paste0(scale, "scale_fill_hue() + \n  ")
       } else if (parms$colour == "Grey") {
-        scale <- paste0(scale, "scale_fill_grey() + ")
+        scale <- paste0(scale, "scale_fill_grey() + \n  ")
       } else {
-        scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+        scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + \n  ")
       }
       scale
 
@@ -254,7 +254,7 @@ gpie <- setRefClass(
 
     getCoord = function(parms) {
 
-      "coord_polar(theta = \"y\") + "
+      "coord_polar(theta = \"y\") + \n  "
 
     },
 
@@ -263,9 +263,9 @@ gpie <- setRefClass(
       if (nchar(parms$ylab) == 0) {
         ylab <- ""
       } else if (parms$ylab == "<auto>") {
-        ylab <- paste0("labs(fill = \"", parms$y, "\") + ")
+        ylab <- paste0("labs(fill = \"", parms$y, "\") + \n  ")
       } else {
-        ylab <- paste0("labs(fill = \"", parms$ylab, "\") + ")
+        ylab <- paste0("labs(fill = \"", parms$ylab, "\") + \n  ")
       }
       ylab
 
@@ -297,7 +297,7 @@ gpie <- setRefClass(
 
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
-        opts <- paste0(" + theme(", opts, ")")
+        opts <- paste0(" + \n  theme(", opts, ")")
       } else {
         opts <- ""
       }

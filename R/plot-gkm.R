@@ -267,7 +267,7 @@ gkm <- setRefClass(
       } else {
         
         if (mode == 1) {
-          logger("require(\"ggplot2\")")
+          commandDoIt("require(\"ggplot2\")", log = TRUE)
         }
 
         setDataframe(parms)
@@ -444,7 +444,7 @@ gkm <- setRefClass(
 
         .plot <- getPlot(parms)
         if (mode == 1) {
-          logger("print(.plot)")
+          commandDoIt("print(.plot)", log = TRUE)
         }
         response <- tryCatch({
             print(.plot)
@@ -463,7 +463,13 @@ gkm <- setRefClass(
           return(TRUE)
         }
 
-        if (mode == 1 && parms$save == "1") savePlot(.plot)
+        if (mode == 1 && parms$save == "1") {
+          if (parms$plotType == "3") {
+            savePlot(.plot, useGgsave = FALSE)
+          } else {
+            savePlot(.plot)
+          }
+        }
 
         errorCode <- 2
       }
@@ -506,7 +512,7 @@ gkm <- setRefClass(
 
     getGgplot = function(parms) {
 
-      "ggplot(data = .fit, aes(x = x, y = y, colour = z)) + "
+      "ggplot(data = .fit, aes(x = x, y = y, colour = z)) + \n  "
 
     },
 
@@ -514,8 +520,8 @@ gkm <- setRefClass(
 
       if (parms$confInt == "1") {
         geom <- paste0(
-          "geom_step(data = subset(.fit, !is.na(upper)), aes(y = upper), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + ",
-          "geom_step(data = subset(.fit, !is.na(lower)), aes(y = lower), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + "
+          "geom_step(data = subset(.fit, !is.na(upper)), aes(y = upper), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + \n  ",
+          "geom_step(data = subset(.fit, !is.na(lower)), aes(y = lower), size = 1, lty = 2, alpha = 0.5, show.legend = FALSE, na.rm = FALSE) + \n  "
         )
       } else {
         geom <- ""
@@ -524,23 +530,23 @@ gkm <- setRefClass(
       if (parms$confIntB == "1") {
         geom <- paste0(
           geom,
-          "RcmdrPlugin.KMggplot2::geom_stepribbon(data = .fit, aes(x = x, ymin = lower, ymax = upper, fill = z), alpha = 0.25, colour = NA, show.legend = FALSE, kmplot = TRUE) + "
+          "RcmdrPlugin.KMggplot2::geom_stepribbon(data = .fit, aes(x = x, ymin = lower, ymax = upper, fill = z), alpha = 0.25, colour = NA, show.legend = FALSE, kmplot = TRUE) + \n  "
         )
       }
       
-      geom <- paste0(geom, "geom_step(size = 1.5) + ")
+      geom <- paste0(geom, "geom_step(size = 1.5) + \n  ")
 
       if (nrow(.cens) > 0) {
         if (parms$dotCensor == "1") {
           geom <- paste0(
             geom,
-            "geom_point(data = .cens, aes(x = x, y = y, colour = z), size = 3.5) + ",
-            "geom_point(data = .cens, aes(x = x, y = y), size = 2, color = \"white\") + "
+            "geom_point(data = .cens, aes(x = x, y = y, colour = z), size = 3.5) + \n  ",
+            "geom_point(data = .cens, aes(x = x, y = y), size = 2, color = \"white\") + \n  "
           )
         } else {
           geom <- paste0(
             geom,
-            "geom_linerange(data = .cens, aes(x = x, ymin = y, ymax = y + 0.02), size = 1.5) + "
+            "geom_linerange(data = .cens, aes(x = x, ymin = y, ymax = y + 0.02), size = 1.5) + \n  "
           )
         }
       }
@@ -548,21 +554,21 @@ gkm <- setRefClass(
       if (parms$plotType == "2") {
         geom <- paste0(
           geom,
-          "geom_text(data = .nrisk, aes(y = y, x = x, label = Freq, colour = z), show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
+          "geom_text(data = .nrisk, aes(y = y, x = x, label = Freq, colour = z), show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + \n  "
         )
       }
        
       if (parms$pValue == "1" && length(unique(.df$z)) > 1) {
         geom <- paste0(
           geom,
-          "geom_text(data = .pval, aes(y = y, x = x, label = label), colour = \"black\", hjust = 0, vjust = -0.5, parse = TRUE, show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + "
+          "geom_text(data = .pval, aes(y = y, x = x, label = label), colour = \"black\", hjust = 0, vjust = -0.5, parse = TRUE, show.legend = FALSE, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + \n  "
         )
       }
       
       if (parms$refMedian == "1" && !all(is.infinite(.med$median))) {
         geom <- paste0(
           geom,
-          "geom_vline(data = .med, aes(xintercept = median), colour = \"black\", lty = 2) + "
+          "geom_vline(data = .med, aes(xintercept = median), colour = \"black\", lty = 2) + \n  "
         )
       } else if (parms$refMedian == "1" && all(is.infinite(.med$median))) {
         Message(message = gettextKmg2("Median survival times did not exist."),
@@ -578,25 +584,25 @@ gkm <- setRefClass(
       nTick    <- as.numeric(parms$tickCount) - 1
       byLength <- signif((max(.fit$x) + nTick/2)/nTick, -round(log10(max(.fit$x)), 0))
       scale <- paste0(
-        "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
-        "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + "
+        "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + \n  ", 
+        "scale_y_continuous(limits = c(0, 1), expand = c(0.01, 0)) + \n  "
       )
       if (parms$colour == "Default") {
       } else if (parms$colour == "Hue") {
-        scale <- paste0(scale, "scale_colour_hue() + ")
+        scale <- paste0(scale, "scale_colour_hue() + \n  ")
       } else if (parms$colour == "Grey") {
-        scale <- paste0(scale, "scale_colour_grey() + ")
+        scale <- paste0(scale, "scale_colour_grey() + \n  ")
       } else {
-        scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+        scale <- paste0(scale, "scale_colour_brewer(palette = \"", parms$colour, "\") + \n  ")
       }
       if (parms$confIntB == "1") {
         if (parms$colour == "Default") {
         } else if (parms$colour == "Hue") {
-          scale <- paste0(scale, "scale_fill_hue() + ")
+          scale <- paste0(scale, "scale_fill_hue() + \n  ")
         } else if (parms$colour == "Grey") {
-          scale <- paste0(scale, "scale_fill_grey() + ")
+          scale <- paste0(scale, "scale_fill_grey() + \n  ")
         } else {
-          scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + ")
+          scale <- paste0(scale, "scale_fill_brewer(palette = \"", parms$colour, "\") + \n  ")
         }
       }
       scale
@@ -608,9 +614,9 @@ gkm <- setRefClass(
       if (length(parms$z) == 0) {
         zlab <- ""
       } else if (parms$zlab == "<auto>") {
-        zlab <- paste0("labs(colour = \"", parms$z, "\") + ")
+        zlab <- paste0("labs(colour = \"", parms$z, "\") + \n  ")
       } else {
-        zlab <- paste0("labs(colour = \"", parms$zlab, "\") + ")
+        zlab <- paste0("labs(colour = \"", parms$zlab, "\") + \n  ")
       }
       zlab
 
@@ -638,7 +644,7 @@ gkm <- setRefClass(
 
       if (length(opts) != 0) {
         opts <- do.call(paste, c(opts, list(sep = ", ")))
-        opts <- paste0(" + theme(", opts, ")")
+        opts <- paste0(" + \n  theme(", opts, ")")
       } else {
         opts <- ""
       }
@@ -709,7 +715,7 @@ gkm <- setRefClass(
       if (parms$plotType == "3") {
 
         if (length(parms$z) != 0) {
-          opts <- " + theme(legend.position = \"right\")"
+          opts <- " + \n  theme(legend.position = \"right\")"
           if (length(unique(factor(.fit$z))) == 2) {
             command <- ".nrisk$y <- ((.nrisk$y - 0.025) / (max(.nrisk$y) - 0.025) + 0.5) * 0.5"
           } else {
@@ -723,17 +729,17 @@ gkm <- setRefClass(
         if (parms$colour == "Default") {
           command <- ""
         } else if (parms$colour == "Hue") {
-          command <- paste0("scale_colour_hue() + ")
+          command <- paste0("scale_colour_hue() + \n  ")
         } else if (parms$colour == "Grey") {
-          command <- paste0("scale_colour_grey() + ")
+          command <- paste0("scale_colour_grey() + \n  ")
         } else {
-          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + \n  ")
         }
         command <- paste0(
-          ".plot2 <- ggplot(data = .nrisk, aes(x = x, y = y, label = Freq, colour = z)) + ",
-          "geom_text(size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + ",
-          "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + ", 
-          "scale_y_continuous(limits = c(0, 1)) + ",
+          ".plot2 <- ggplot(data = .nrisk, aes(x = x, y = y, label = Freq, colour = z)) + \n  ",
+          "geom_text(size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + \n  ",
+          "scale_x_continuous(breaks = seq(0, ", byLength * nTick, ", by = ", byLength, "), limits = c(0, ", byLength * nTick, ")) + \n  ", 
+          "scale_y_continuous(limits = c(0, 1)) + \n  ",
           command,
           ylab,
           "RcmdrPlugin.KMggplot2::theme_natrisk(", parms$theme, ", ", parms$size, ", \"", parms$family, "\")"
@@ -743,24 +749,24 @@ gkm <- setRefClass(
         if (parms$colour == "Default") {
           command <- ""
         } else if (parms$colour == "Hue") {
-          command <- paste0("scale_colour_hue() + ")
+          command <- paste0("scale_colour_hue() + \n  ")
         } else if (parms$colour == "Grey") {
-          command <- paste0("scale_colour_grey() + ")
+          command <- paste0("scale_colour_grey() + \n  ")
         } else {
-          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + ")
+          command <- paste0("scale_colour_brewer(palette = \"", parms$colour, "\") + \n  ")
         }
         command <- paste0(
-          ".plot3 <- ggplot(data = subset(.nrisk, x == 0), aes(x = x, y = y, label = z, colour = z)) + ",
-          "geom_text(hjust = 0, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + ",
-          "scale_x_continuous(limits = c(-5, 5)) + ",
-          "scale_y_continuous(limits = c(0, 1)) + ",
+          ".plot3 <- ggplot(data = subset(.nrisk, x == 0), aes(x = x, y = y, label = z, colour = z)) + \n  ",
+          "geom_text(hjust = 0, size = ", parms$size , " * 0.282, family = \"", parms$family, "\") + \n  ",
+          "scale_x_continuous(limits = c(-5, 5)) + \n  ",
+          "scale_y_continuous(limits = c(0, 1)) + \n  ",
           command,
           "RcmdrPlugin.KMggplot2::theme_natrisk21(", parms$theme, ", ", parms$size, ", \"", parms$family, "\")"
         )
         commandDoIt(command)
         
         command <- paste0(
-          ".plotb <- ggplot(.df, aes(x = x, y = y)) + geom_blank() + ",
+          ".plotb <- ggplot(.df, aes(x = x, y = y)) + \n  geom_blank() + \n  ",
           "RcmdrPlugin.KMggplot2::theme_natriskbg(", parms$theme, ", ", parms$size, ", \"", parms$family, "\")"
         )
         commandDoIt(command)
@@ -785,13 +791,11 @@ gkm <- setRefClass(
       }
       
       if (parms$refMedian == "1" && !all(is.infinite(.med$median))) {
-        commandDoIt("print(.pmed)", log = FALSE)
-        commandDoIt("cat(\"\n\")", log = FALSE)
+        doItAndPrint("print(.pmed)", log = FALSE)
       }
       
       if (parms$pValue == "1" && length(unique(.df$z)) > 1) {
-        commandDoIt("print(.ppval)", log = FALSE)
-        commandDoIt("cat(\"\n\")", log = FALSE)
+        doItAndPrint("print(.ppval)", log = FALSE)
       }
       
       return(.plot)
