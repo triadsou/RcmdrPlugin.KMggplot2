@@ -2,7 +2,7 @@
 # RcmdrPlugin.KMggplot2 package
 
 
-## Changes in version 0.2-4 (2016-12-30)
+## Changes in version 0.2-4 (2016-12-20)
 
 * ggplot2 2.2.0 was supported.
 * Added ggplot2's colour/fill scales (scale_*_hue, scale_*_grey).
