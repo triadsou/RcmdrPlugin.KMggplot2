@@ -60,6 +60,7 @@ Collate:
     'theme-wsj2.r'
     'util-gettextKmg2.r'
     'util-ggsaveKmg2.r'
+    'util-lastcom.r'
     'util-nonFactors.r'
     'zzz.r'
 RoxygenNote: 5.0.1
