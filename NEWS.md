@@ -6,7 +6,7 @@
 
 * ggplot2 2.2.0 was supported.
 * Added ggplot2's colour/fill scales (scale_*_hue, scale_*_grey).
-* Box plot: Beeswarm plot (Thanks to DailyFunky @EpiFunky).
+* New plot: Beeswarm plot in Box plot (Thanks to DailyFunky @EpiFunky).
 * New function: lastcom() function to list the last command.
 * Fixed a bug: Histogram with missing values (Thanks to Dr. José G. Conde).
 * Fixed a bug: Boxplot with an inappropriate jitter position (Thanks to Dr. M. Felix Freshwater).
