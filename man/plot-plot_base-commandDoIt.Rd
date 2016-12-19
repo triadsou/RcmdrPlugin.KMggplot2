@@ -9,6 +9,8 @@
 }
 \arguments{
 \item{command}{String; command codes.}
+
+\item{log}{Boolean; use \cdoe{logger}.}
 }
 \description{
 \code{commandDoIt} method gets the plot error message.
