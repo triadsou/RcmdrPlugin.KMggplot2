@@ -1,0 +1,6 @@
+
+lastcom <- function() {
+  
+  cat(.lastcom)
+  
+}
