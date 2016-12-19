@@ -254,13 +254,13 @@ gkm <- setRefClass(
 
       if (length(parms$x) == 0) {
         errorCondition(
-          recall  = windowScatter,
+          recall  = windowKM,
           message = gettextKmg2("Time variable is not selected.")
         )
         errorCode <- TRUE
       } else if (length(parms$y) == 0) {
         errorCondition(
-          recall  = windowScatter,
+          recall  = windowKM,
           message = gettextKmg2("Event variable is not selected.")
         )
         errorCode <- TRUE
@@ -470,6 +470,9 @@ gkm <- setRefClass(
             savePlot(.plot)
           }
         }
+        
+        pos <- 1
+        assign(".lastcom", paste0(codes, "\n"), envir = as.environment(pos))
 
         errorCode <- 2
       }

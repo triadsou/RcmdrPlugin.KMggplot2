@@ -328,6 +328,9 @@ gqq <- setRefClass(
             commandDoIt("print(.plot)")
 
             if (mode == 1 && parms$save == "1") savePlot(.plot)
+            
+            pos <- 1
+            assign(".lastcom", paste0(codes, "\n"), envir = as.environment(pos))
 
             errorCode <- 2
           }

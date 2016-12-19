@@ -7,6 +7,10 @@
 #' @export
 lastcom <- function() {
   
-  cat(.lastcom)
+  if (exists(".lastcom", envir = .GlobalEnv)){
+    cat(get(".lastcom", envir = .GlobalEnv))
+  } else {
+    stop("object '.lastcom' not found")
+  }
   
 }

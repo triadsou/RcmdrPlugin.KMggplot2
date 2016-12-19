@@ -113,13 +113,16 @@ plot_base <- setRefClass(
             return()
           }
           if (parms$save == "1") savePlot(.plot)
+          
+          pos <- 1
+          assign(".lastcom", paste0(codes, "\n"), envir = as.environment(pos))
+          
         }
         
         removeRmlist()
         
         activateMenus()
         tkfocus(CommanderWindow())
-        assign(".lastcom", paste0(codes, "\n"), envir = .GlobalEnv)
         
       }
       
@@ -296,7 +299,7 @@ plot_base <- setRefClass(
       zlab   <- ""
       main   <- ""
       
-      size   <- "16"
+      size   <- "14"
       family <- "0"
       colour <- "0"
       save   <- "0"
