@@ -1,6 +1,6 @@
 Package: RcmdrPlugin.KMggplot2
 Type: Package
-Title: Rcmdr Plug-in for Data Visualization with 'ggplot2'
+Title: R Commander Plug-in for Data Visualization with 'ggplot2'
 Version: 0.2-4
 Author: Triad sou. and Kengo NAGASHIMA
 Maintainer: Triad sou. <triadsou@gmail.com>

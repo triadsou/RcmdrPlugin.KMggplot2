@@ -31,4 +31,4 @@ library("RcmdrPlugin.KMggplot2")
 ```
 
 
-If you want to see more details: [Using extrafont - CRAN](https://cran.r-project.org/web/packages/extrafont/README.html)
+If you want to see more details: The Using extrafont section of the README file in the ['extrafont'](https://CRAN.R-project.org/package=extrafont).
